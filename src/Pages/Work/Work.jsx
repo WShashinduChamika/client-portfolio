@@ -63,7 +63,7 @@ function Work() {
           <div className="main-head">
             Solving real-world problems through elegant
           </div>
-          <div className="Second-head">code and design...</div>
+          <div className="Second-head">design and no-code solutions ...</div>
         </div>
 
         <div className="Date-time-section">
@@ -95,7 +95,7 @@ function Work() {
               <img src={Mini_Logo} className="logomark2" alt="Logo" />
               <div className="LogoText">
                 <div className="text-logo">Hey, I’m Minuri.</div>
-                <div className="text-underlogo">Developer</div>
+                <div className="text-underlogo">Product designer</div>
               </div>
             </div>
             <div className="button_section">
@@ -120,12 +120,11 @@ function Work() {
           </div>
           <div className="head_name">
             Obsessed with crafting <span>seamless </span>
-            <br /> software solutions.
+            <br /> digital experiences.
           </div>
           <div className="description">
-            Hey, I'm Minuri, welcome to my world. I love building innovative and
-            scalable
-            <br /> software solutions that solve real-world problems.
+            Hey, I'm Minuri, welcome to my world. I love designing and building innovative,
+            <br /> user-friendly solutions that solve real-world problems.
           </div>
           <br />
         </div>

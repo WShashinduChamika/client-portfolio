@@ -1,0 +1,150 @@
+.overline-wrapper {
+  grid-column-gap: 12px;
+  align-self: flex-start;
+  align-items: center;
+  display: flex;
+  padding-top: 200px;
+}
+
+.icon-section-dot {
+  background-color: white;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 0 20px #fff;
+}
+
+.text-projectpage-overline {
+  color: #f2f2f266;
+  text-align: left;
+  letter-spacing: 1.5px;
+  margin-top: 1px;
+  font-family: Neue Montreal, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 19px;
+}
+
+.text-hero.info-hero {
+  text-align: left;
+  letter-spacing: -1px;
+  text-shadow: 0 4px 10px #0057ff33, 0 -4px 10px #ff5a0026, 0 0 30px #fff3;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 110%;
+  color: white;
+  width: 80%;
+}
+
+.text-info-hero-serif {
+  font-family: "Kaushan Script", cursive;
+  font-style: normal;
+}
+
+.AboutText {
+  color: #f2f2f299;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  flex: 1;
+  font-family: Neue Montreal, sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+}
+
+.Aboutpart {
+  display: flex;
+  margin-top: 100px;
+}
+
+.window-outline {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  outline-offset: -1px;
+  background-image: radial-gradient(
+    circle farthest-side at 50% 0,
+    #f2f2f233,
+    #0000
+  );
+  border-radius: 24px;
+  outline: 1px solid #f2f2f226;
+  padding: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 0 8px #0006, 0 0 60px #0003, 0 30px 120px #000c;
+  width: 50%;
+  margin-right: 40px;
+}
+
+.Me {
+  width: 100%;
+  border-radius: 24px;
+
+  object-fit: cover;
+}
+
+.AboutHead {
+  color: #f2f2f2e6;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.Tech {
+  width: 80px;
+  margin: 10px;
+}
+
+.figma {
+  height: 60px;
+  width: auto;
+}
+
+.TechStack {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.Meholder::after {
+  content: "";
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    to top,
+    rgb(0, 0, 0) 5%,
+    rgba(8, 8, 8, 0.568) 35%
+  ); /* Adjust gradient colors as needed */
+  z-index: 1; /* Places the gradient above the image */
+}
+
+@media (max-width: 900px) {
+  .text-hero.info-hero {
+    width: 100%;
+  }
+
+  .Aboutpart {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .window-outline {
+    margin-right: 0px;
+    width: 100%;
+    margin-bottom: 80px;
+  }
+
+  .Tech {
+    height: auto;
+    width: 45px;
+  }
+
+  .Grapicscard {
+    padding: 8%;
+  }
+}

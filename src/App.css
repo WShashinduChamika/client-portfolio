@@ -1,0 +1,19 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  padding: 160px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Archivo", sans-serif;
+  font-weight: 500;
+}
+
+body {
+  cursor: url("../src/Assets/cursor.png"), auto;
+}

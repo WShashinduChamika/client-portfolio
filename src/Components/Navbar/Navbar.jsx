@@ -10,6 +10,7 @@ function Navbar() {
   // Determine the active section based on the current URL path
   const isWorkPage = location.pathname === "/Work";
   const isInfoPage = location.pathname === "/Info";
+  const isBlogsPage = location.pathname === "/Blogs";
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
@@ -24,7 +25,7 @@ function Navbar() {
           <img src={Logo} className="logomark" alt="Logo" />
           <div className="LogoText">
             <div className="text-logo">Minuri Senara</div>
-            <div className="text-underlogo">Full Stack Developer</div>
+            <div className="text-underlogo">Product Designer</div>
           </div>
         </div>
 
@@ -32,7 +33,7 @@ function Navbar() {
         <div className={`nav-pill-wrapper ${isMenuOpen ? "active" : ""}`}>
           <div
             className={`nav-indicator-glow ${
-              isWorkPage ? "glow-work" : isInfoPage ? "glow-info" : ""
+              isWorkPage ? "glow-work" : isInfoPage ? "glow-info" : isBlogsPage ? "glow-blogs" : ""
             }`}
           ></div>
 
@@ -42,6 +43,9 @@ function Navbar() {
             </Link>
             <Link to="/Info" className="nav-toggle w-inline-block">
               <div className="text-nav-toggle">Info</div>
+            </Link>
+            <Link to="/Blogs" className="nav-toggle w-inline-block">
+              <div className="text-nav-toggle">Blogs</div>
             </Link>
             <div className="nav-indicator-pill"></div>
           </div>

@@ -170,11 +170,8 @@ function Work() {
             </div>
 
             <div className="description seconDes">
-              I create unique software solutions with a strong focus on user
-              experience, tailored to your needs and objectives. By merging
-              creativity with functionality and leveraging cutting-edge
-              technologies, I ensure every project not only works seamlessly but
-              also delivers an exceptional user experience.
+              I design and build digital experiences that feel effortless, combining creativity,
+              no-code, and design to create products people love.
             </div>
           </div>
         </div>

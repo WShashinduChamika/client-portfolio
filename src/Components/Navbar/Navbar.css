@@ -1,3 +1,4 @@
+/* Navbar.css */
 * {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
@@ -6,7 +7,6 @@
 .logomark {
   justify-content: center;
   align-items: center;
-
   display: flex;
 }
 
@@ -107,7 +107,7 @@ a {
 .section-nav {
   z-index: 10;
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
-  height: 168px;
+  height: 120px; /* Adjust height as needed */
   display: flex;
   justify-content: center;
   position: fixed;
@@ -117,9 +117,12 @@ a {
   right: 0%;
   opacity: 1;
   align-items: center;
-
-  margin-top: 20px;
   margin-bottom: 60px;
+  transition: background-color 0.3s ease;
+}
+
+.section-nav.scrolled {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .chip-socials-wrapper {

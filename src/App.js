@@ -9,6 +9,7 @@ import Projects3 from "./Pages/Projects/Projects3";
 import Projects4 from "./Pages/Projects/Projects4";
 import Blogs from "./Pages/Blogs/Blogs";
 import Scrolltotop from "./Components/Scrolltotop";
+import MoreProjects from "./Pages/MoreProjects/MoreProjects";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/Projects3" element={<Projects3 />} />
           <Route path="/Projects4" element={<Projects4 />} />
           <Route path="/Blogs" element={<Blogs />} />
+          <Route path="/more-projects" element={<MoreProjects />} />
         </Routes>
       </div>
     </Router>

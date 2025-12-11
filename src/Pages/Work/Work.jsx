@@ -113,6 +113,14 @@ function Work() {
                   <img src={instergram} className="logomark" alt="Logo" />{" "}
                 </a>
               </div>
+              <div className="Logo_Social2">
+                <a
+                  href="https://wa.me/+94713775404"
+                  target="_blank"
+                >
+                  <img src={instergram} className="logomark" alt="Logo" />{" "}
+                </a>
+              </div>
               <a href="mailto:minurisenara@gmail.com" className="contactbtn">
                 <div className="Touch">Get In Touch</div>
               </a>
@@ -282,7 +290,7 @@ function Work() {
         </Link>
       </div>
      
-      <div className="GrapicSection">
+      {/* <div className="GrapicSection">
         <a
           className="Grapicscard"
           href="https://www.behance.net/minurihewage"
@@ -292,7 +300,7 @@ function Work() {
           <img src={flyers} className="flyers" alt="Logo" />
           <div className="headGrapic">Branding</div>
         </a>
-      </div>
+      </div> */}
       <br />
       <br />
       <br />
@@ -314,7 +322,37 @@ function Work() {
               Let’s collaborate to create something exceptional! I'm excited to
               connect over new opportunities in software engineering.
             </div>
-            <div className="sentmailbtn">
+            <div className="button_section" style={{width:"30%"}}>
+              <div className="Logo_Social1">
+                <a href="https://www.behance.net/minurihewage" target="_blank"  className="contactbtn">
+                  <div className="Touch">
+                   <img src={behance} className="logomark" alt="Logo" />
+                  </div>
+                </a>
+              </div>
+
+              <div className="Logo_Social2">
+                <a
+                  href="https://www.instagram.com/minuri_senara/?next=%2F"
+                  target="_blank"
+                  className="contactbtn"
+                >
+                  <div className="Touch">
+                    <img src={instergram} className="logomark" alt="Logo" />{" "}
+                  </div>
+                </a>
+              </div>
+              <div className="Logo_Social2">
+                <a
+                  href="https://wa.me/+94713775404"
+                  target="_blank"
+                  className="contactbtn"
+                >
+                  <div className="Touch">
+                    <img src={instergram} className="logomark" alt="Logo" />{" "}
+                  </div>
+                </a>
+              </div>
               <a href="mailto:minurisenara@gmail.com" className="contactbtn">
                 <div className="Touch">Get In Touch</div>
               </a>

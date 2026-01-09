@@ -290,7 +290,7 @@ function Work() {
         </Link>
       </div>
      
-      {/* <div className="GrapicSection">
+       {/* <div className="GrapicSection">
         <a
           className="Grapicscard"
           href="https://www.behance.net/minurihewage"
@@ -300,7 +300,7 @@ function Work() {
           <img src={flyers} className="flyers" alt="Logo" />
           <div className="headGrapic">Branding</div>
         </a>
-      </div> */}
+      </div>   */}
       <br />
       <br />
       <br />

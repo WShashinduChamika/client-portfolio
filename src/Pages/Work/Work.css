@@ -1103,3 +1103,7 @@ tbody td {
   margin-top: 40px;
 }
 
+.more-projects-button-container .Touch {
+  background: radial-gradient(ellipse at center top, #0F9A9E99 0%, #00000000 100%);
+}
+

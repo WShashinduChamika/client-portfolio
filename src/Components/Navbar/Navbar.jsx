@@ -25,7 +25,7 @@ function Navbar() {
           <img src={Logo} className="logomark" alt="Logo" />
           <div className="LogoText">
             <div className="text-logo">Minuri Senara</div>
-            <div className="text-underlogo">Product Designer</div>
+            <div className="text-underlogo">Digital Product Designer</div>
           </div>
         </div>
 

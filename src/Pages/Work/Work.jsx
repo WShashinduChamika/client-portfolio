@@ -95,7 +95,7 @@ function Work() {
               <img src={Mini_Logo} className="logomark2" alt="Logo" />
               <div className="LogoText">
                 <div className="text-logo">Hey, I’m Minuri.</div>
-                <div className="text-underlogo">Product designer</div>
+                <div className="text-underlogo">Digital Product Designer</div>
               </div>
             </div>
             <div className="button_section">

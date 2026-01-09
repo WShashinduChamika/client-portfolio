@@ -60,7 +60,7 @@
   width: 24px;
   height: 4px;
   margin-bottom: -2px;
-  margin-left: 33px;
+  margin-left: 43px;
   box-shadow: 0 2px 25px 2px #fff;
 }
 
@@ -70,11 +70,16 @@
   border-radius: 18px;
   justify-content: center;
   align-items: center;
-  width: 80px;
+  flex: 1 1 0; /* allow each tab to share available space equally */
+  min-width: 0;
   height: 36px;
   text-decoration: none;
   transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
   display: flex;
+}
+
+.nav-pill .nav-toggle {
+  margin: 0 4px; /* small gap between tabs */
 }
 
 .w-inline-block {
@@ -93,7 +98,8 @@ a {
   border-radius: 24px;
   justify-content: space-between;
   align-items: center;
-  width: 180px;
+  /* width adapts to number of nav items for better hover area */
+  width: calc(var(--nav-count, 3) * 100px);
   height: 48px;
   padding-left: 6px;
   padding-right: 6px;
@@ -188,7 +194,7 @@ a {
 }
 
 .nav-indicator-glow.info {
-  margin-left: 121px;
+  margin-left: 131px;
 }
 
 .logo-block {
@@ -217,7 +223,7 @@ a {
   z-index: -1;
   background-color: #f2f2f20d;
   border-radius: 18px;
-  width: 80px;
+  width: calc(33.333% - 8px); /* match one tab's width (three tabs total) */
   height: 36px;
   display: block;
   position: absolute;

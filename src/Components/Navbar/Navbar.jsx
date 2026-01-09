@@ -1,7 +1,7 @@
 import "./Navbar.css";
 import Logo from "../../Assets/Logo.png";
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react"; // Import useState for managing menu state
+import { useState, useEffect } from "react"; // Import hooks for state and effects
 
 function Navbar() {
   const location = useLocation(); // Correctly call useLocation
@@ -12,11 +12,33 @@ function Navbar() {
   const isInfoPage = location.pathname === "/Info";
   const isBlogsPage = location.pathname === "/Blogs";
 
+  // Nav items used by the navbar
+  const navItems = [
+    { to: "/Work", label: "Work" },
+    { to: "/Info", label: "Info" },
+    { to: "/Blogs", label: "Blogs" },
+  ];
+  const navCount = navItems.length;
+
+  // Keep active index in state so UI updates reliably when route changes
+  const [activeIndex, setActiveIndex] = useState(() => {
+    const idx = navItems.findIndex((item) => item.to === location.pathname);
+    return idx < 0 ? 0 : idx;
+  });
+
+  useEffect(() => {
+    let idx = navItems.findIndex((item) => item.to === location.pathname);
+    if (idx < 0) idx = 0;
+    setActiveIndex(idx);
+  }, [location.pathname]);
+
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
   };
+
+  console.log("active index", activeIndex);
 
   return (
     <div className="section-nav">
@@ -33,21 +55,30 @@ function Navbar() {
         <div className={`nav-pill-wrapper ${isMenuOpen ? "active" : ""}`}>
           <div
             className={`nav-indicator-glow ${
-              isWorkPage ? "glow-work" : isInfoPage ? "glow-info" : isBlogsPage ? "glow-blogs" : ""
+              activeIndex === 0 ? "work" : activeIndex === 1 ? "info" : activeIndex === 2 ? "glow-blogs" : ""
             }`}
+            style={{
+              left: `calc(${activeIndex + 0.5} * (100% / ${navCount}) - 12px)`,
+            }}
           ></div>
 
-          <div className="nav-pill">
-            <Link to="/Work" className="nav-toggle work w-inline-block">
-              <div className="text-nav-toggle">Work</div>
-            </Link>
-            <Link to="/Info" className="nav-toggle w-inline-block">
-              <div className="text-nav-toggle">Info</div>
-            </Link>
-            <Link to="/Blogs" className="nav-toggle w-inline-block">
-              <div className="text-nav-toggle">Blogs</div>
-            </Link>
-            <div className="nav-indicator-pill"></div>
+          <div className="nav-pill" style={{ "--nav-count": navCount }}>
+            {navItems.map((item, idx) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={`nav-toggle w-inline-block ${idx === 0 ? "work" : ""}`}
+              >
+                <div className="text-nav-toggle">{item.label}</div>
+              </Link>
+            ))}
+            <div
+              className="nav-indicator-pill"
+              style={{
+                left: `calc(${activeIndex} * (100% / ${navCount}) + 6px)`,
+                width: `calc(100% / ${navCount} - 8px)`,
+              }}
+            ></div>
           </div>
         </div>
 

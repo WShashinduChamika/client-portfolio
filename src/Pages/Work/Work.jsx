@@ -172,7 +172,7 @@ function Work() {
             <img src={Minuri2} className="Minuri2" alt="Logo" />
           </div>
 
-          <div className="text-section">
+          <div className="text-section help-card">
             <div className="head_name">
               What makes me <span>different?</span>
             </div>
@@ -289,7 +289,52 @@ function Work() {
           <div className="Touch" style={{color:"white", padding:"20px 50px"}}>More Projects</div>
         </Link>
       </div>
-     
+      {/* Services Section - added after projects */}
+      <motion.div
+        className="services-section"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div className="services-title">
+          <div className="Volhead">My Services</div>
+        </div>
+
+        <div className="services-grid">
+          {[
+            {
+              id: 1,
+              title: "UX/UI Design",
+              desc: "Designing user-friendly interfaces that look great and feel intuitive.",
+            },
+            {
+              id: 2,
+              title: "Graphic Design",
+              desc: "Creating visuals and logos that bring ideas to life.",
+            },
+            {
+              id: 3,
+              title: "Motion UX Design",
+              desc: "Adding smooth animations to enhance user interactions.",
+            },
+            {
+              id: 4,
+              title: "No-Code Product Creation",
+              desc: "Quickly creating apps and websites using no-code tools.",
+            },
+          ].map((s) => (
+            <div key={s.id} className="service-card">
+              <div className="service-card-header">
+                <div className="service-badge">{s.id}</div>
+              </div>
+
+              <div className="service-title">{s.title}</div>
+
+              <div className="service-desc">{s.desc}</div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
        {/* <div className="GrapicSection">
         <a
           className="Grapicscard"

@@ -55,7 +55,7 @@ function Navbar() {
         <div className={`nav-pill-wrapper ${isMenuOpen ? "active" : ""}`}>
           <div
             className={`nav-indicator-glow ${
-              activeIndex === 0 ? "work" : activeIndex === 1 ? "info" : activeIndex === 2 ? "glow-blogs" : ""
+              activeIndex === 0 ? "work" : activeIndex === 1 ? "info" : activeIndex === 2 ? "blogs" : "" 
             }`}
             style={{
               left: `calc(${activeIndex + 0.5} * (100% / ${navCount}) - 12px)`,

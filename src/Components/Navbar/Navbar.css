@@ -197,6 +197,10 @@ a {
   margin-left: 131px;
 }
 
+.nav-indicator-glow.blogs {
+  margin-left: 239px;
+}
+
 .logo-block {
   display: inline-flex;
 }

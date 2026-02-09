@@ -129,6 +129,11 @@
   width: auto;
 }
 
+.webflow {
+  height: 65px;
+  width: auto;
+}
+
 .TechStack {
   justify-content: center;
   align-items: center;

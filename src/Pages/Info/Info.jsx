@@ -16,6 +16,7 @@ import PS from "../../Assets/PS.png";
 import Reacts from "../../Assets/React.png";
 import XD from "../../Assets/Xd.png";
 import figma from "../../Assets/figma.png";
+import webflow from "../../Assets/Webflow.png";
 import node from "../../Assets/Node.png";
 import PHP from "../../Assets/PHP.png";
 import Dart from "../../Assets/Dart.png";
@@ -121,7 +122,7 @@ function Info() {
             <img src={html} className="Tech" alt="Logo" />
             <img src={css} className="Tech" alt="Logo" />
             <img src={js} className="Tech" alt="Logo" />
-            <img src={node} className="Tech" alt="Logo" />
+            {/* <img src={node} className="Tech" alt="Logo" />
             <img src={PHP} className="Tech" alt="Logo" />
             <img src={Java} className="Tech" alt="Logo" />
             <img src={Reacts} className="Tech" alt="Logo" />
@@ -129,11 +130,12 @@ function Info() {
             <img src={Dart} className="Tech" alt="Logo" />
             <img src={mongo} className="Tech" alt="Logo" />
             <img src={Mysql} className="Tech" alt="Logo" />
-            <img src={Firebase} className="Tech" alt="Logo" />
+            <img src={Firebase} className="Tech" alt="Logo" /> */}
             <img src={XD} className="Tech" alt="Logo" />
             <img src={figma} className="Tech figma" alt="Logo" />
             <img src={PS} className="Tech" alt="Logo" />
             <img src={Ai} className="Tech" alt="Logo" />
+            <img src={webflow} className="Tech webflow" alt="Logo" />
           </div>
         </a>
       </div>

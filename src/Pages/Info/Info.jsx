@@ -20,7 +20,7 @@ import node from "../../Assets/Node.png";
 import PHP from "../../Assets/PHP.png";
 import Dart from "../../Assets/Dart.png";
 import Firebase from "../../Assets/Firebase.png";
-import Me from "../../Assets/Me.png";
+import Me from "../../Assets/Me2.png";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../../Components/Navbar/Navbar";
@@ -66,9 +66,8 @@ function Info() {
         animate={{ opacity: 1, y: 0 }} // animate to full opacity and original position
         transition={{ duration: 0.8, ease: "easeOut" }} // control speed and easing
       >
-        I am passionate about developing software solutions that inspire and
-        elevate
-        <span class="text-info-hero-serif"> user experiences.</span>
+       “ I’m a product designer who loves creating meaningful products that inspire me and bring excitement to everyone who uses them. ”
+        {/* <span class="text-info-hero-serif"> user experiences.</span> */}
       </motion.div>
 
       <motion.div
@@ -77,53 +76,35 @@ function Info() {
         animate={{ opacity: 1, y: 0 }} // animate to full opacity and original position
         transition={{ duration: 1.5, ease: "easeOut" }} // control speed and easing
       >
+       
+        <div className="AboutText">
+             I’m Minuri. I have experience in design and coding, and I love creating 
+             things that are meaningful, not just visually appealing. I care about 
+             how people feel when they interact with a design and aim to give users 
+             quick, seamless experiences. <br />
+            <br />
+           
+             I’m a software engineering undergraduate with knowledge of the tech industry, 
+             and I’m passionate about low-code and no-code tools to bring ideas to life 
+             faster and more efficiently. I enjoy exploring user-centered solutions, 
+             experimenting with new technologies, and continuously improving my skills 
+             to create impactful digital experiences.
+            <br />
+            <br />
+            <div className="care-heading">What I Care About:</div>
+            <ul className="care-list">
+              <li>Clean and visually appealing app structure</li>
+              <li>Understanding how clients feel</li>
+              <li>Calm and continuous communication</li>
+              <li>Honest feedback</li>
+              <li>Delivering designs on time</li>
+              <li>Working with kind and open-minded people</li>
+            </ul>
+        </div>
+       
         <div className="window-outline">
           <div className="Meholder">
             <img src={Me} className="Me" alt="Logo" />
-          </div>
-        </div>
-        <div className="AboutText">
-          <div className="AboutText">
-            <div className="AboutHead">This is my story </div>
-            Hi, I’m Minuri! I'm a passionate software engineer specializing in
-            UI/UX design and frontend development. Currently, I’m a third-year
-            undergraduate at Sabaragamuwa University of Sri Lanka, where I’m
-            pursuing a BSc (Hons) in Software Engineering. <br />
-            <br />
-            <div className="AboutHead">My background in Design. </div>
-            My design journey began in 2019 when I worked as a social media
-            marketer. During this time, I discovered my passion for design and
-            began selling my creations on Shutterstock. I expanded my work to
-            include vector designs, logos, wedding invitations, business cards,
-            and other custom designs for clients, offering them through various
-            online platforms.Over the past four years, I've gained hands-on
-            experience with tools like Illustrator, Photoshop, Figma, and Adobe
-            XD, participating in various competitions that have fueled my
-            creativity and passion for design.
-            <br />
-            <br />
-            <div className="AboutHead">But, I wanted more.</div>
-            <div>
-              I realized that my passion extended beyond graphic design—I wanted
-              to work in the software industry, creating user-friendly products
-              that make a real impact. Rather than focusing solely on design, I
-              aimed to combine my skills in both design and development. I pride
-              myself on my proficiency in HTML, CSS, Flutter, and React, along
-              with programming languages like JavaScript and Dart, which enable
-              me to craft intuitive user experiences and build captivating user
-              interfaces that solve real-world problems. My focus is now on
-              delivering seamless, user-centered products that truly empower the
-              end user.
-            </div>
-            <br />
-            <div className="AboutHead">What is My goal ?</div>
-            <div>
-              My goal is to bridge the gap between design and development,
-              crafting intuitive and impactful digital experiences that empower
-              users. I aim to deliver user-friendly products that solve
-              real-world problems by combining my skills in UI/UX design,
-              frontend development, and software engineering.
-            </div>
           </div>
         </div>
       </motion.div>

@@ -1,29 +1,38 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Layers, Mail, Lock, Eye, EyeOff, ArrowRight, AlertCircle, Loader2 } from "lucide-react";
+import { login } from "@/services/auth.service";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
 
-    // TODO: Replace with actual API integration
-    setTimeout(() => {
-      console.log("Login submitted:", { email, password });
+    try {
+      await login({ email, password });
+      router.push("/dashboard");
+    } catch (err: unknown) {
+      const message =
+        (err as { response?: { data?: { message?: string } } })?.response?.data
+          ?.message ?? "Login failed. Please check your credentials.";
+      setError(message);
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   return (

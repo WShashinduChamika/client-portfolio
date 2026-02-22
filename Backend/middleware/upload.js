@@ -95,6 +95,9 @@ export const parseMultipart = (req, res, next) => {
         const isFilePart = !!filename || !!mime;
 
         if (isFilePart) {
+          // No bytes → the file input was left empty; skip gracefully
+          if (!bodySlice.length) continue;
+
           if (!mime || !ALLOWED_MIME_TYPES.includes(mime)) {
             return sendErrorResponse(
               res, 400,

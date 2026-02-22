@@ -21,7 +21,9 @@ export const createBlog = async (req, res) => {
     }
 
     // Use file uploaded in this request, or a path string passed in the body
-    const coverImagePath = req.savedFile ? req.savedFile.url : (coverImage || "");
+    const coverImagePath = req.savedFile
+      ? req.savedFile.url
+      : (typeof coverImage === "string" ? coverImage.trim() : "");
 
     const blog = new Blog({
       title,

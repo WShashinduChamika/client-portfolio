@@ -2,10 +2,16 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { connectDB, disconnectDB } from './config/db-config.js';
 import { userRoutes } from './routes/user-routes.js';
+import { blogRoutes } from './routes/blog-routes.js';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Connect to MongoDB
 connectDB();
@@ -19,6 +25,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// Serve uploaded files as static assets
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // Root route
 app.get('/', (req, res) => {
   res.json({ 
@@ -30,6 +39,7 @@ app.get('/', (req, res) => {
 
 // API Routes
 app.use('/api/users', userRoutes);
+app.use('/api/blogs', blogRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

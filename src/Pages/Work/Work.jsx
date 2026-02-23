@@ -1,22 +1,17 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "../../Components/Navbar/Navbar";
-import Logo from "../../Assets/Logo.png";
 import Minuri from "../../Assets/Minuri.png";
 import Mini_Logo from "../../Assets/Mini_Logo.png";
-import email from "../../Assets/email.png";
 import instergram from "../../Assets/instagram.png";
-import sky from "../../Assets/Sky.jpg";
 import Volunteer from "../../Assets/Volunteer.png";
 import Minuri2 from "../../Assets/Minuri2.png";
 import Minuri3 from "../../Assets/Minuri3.png";
 import Arrow from "../../Assets/right-arrow.png";
-import Arrow2 from "../../Assets/Arrow2.png";
 import Project1 from "../../Assets/Project1.png";
 import Project2 from "../../Assets/Project2.png";
 import Project3 from "../../Assets/Project3.png";
 import Project4 from "../../Assets/Project4.png";
-import flyers from "../../Assets/flyers.png";
 import behance from "../../Assets/behance.png";
 import "./Work.css";
 import { motion } from "framer-motion";
@@ -24,14 +19,13 @@ import { motion } from "framer-motion";
 function Work() {
   const [time, setTime] = useState(new Date());
   const [scrollY, setScrollY] = useState(0);
-  const [isBatMan, setIsBatMan] = useState(false);
   useEffect(() => {
     setInterval(() => setTime(new Date()), 1000);
   }, []);
 
   useEffect(() => {
     document.title = "Home";
-  }, {});
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,9 +36,6 @@ function Work() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleSwitch = () => {
-    setIsBatMan(!isBatMan);
-  };
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to the top of the page when the component mounts
   }, []);
@@ -100,7 +91,7 @@ function Work() {
             </div>
             <div className="button_section">
               <div className="Logo_Social1">
-                <a href="https://www.behance.net/minurihewage" target="_blank">
+                <a href="https://www.behance.net/minurihewage" target="_blank" rel="noreferrer">
                   <img src={behance} className="logomark" alt="Logo" />
                 </a>
               </div>
@@ -109,6 +100,7 @@ function Work() {
                 <a
                   href="https://www.instagram.com/minuri_senara/?next=%2F"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={instergram} className="logomark" alt="Logo" />{" "}
                 </a>
@@ -117,6 +109,7 @@ function Work() {
                 <a
                   href="https://wa.me/+94713775404"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={instergram} className="logomark" alt="Logo" />{" "}
                 </a>
@@ -369,7 +362,7 @@ function Work() {
             </div>
             <div className="button_section" style={{width:"30%"}}>
               <div className="Logo_Social1">
-                <a href="https://www.behance.net/minurihewage" target="_blank"  className="contactbtn">
+                <a href="https://www.behance.net/minurihewage" target="_blank" rel="noreferrer" className="contactbtn">
                   <div className="Touch">
                    <img src={behance} className="logomark" alt="Logo" />
                   </div>
@@ -380,6 +373,7 @@ function Work() {
                 <a
                   href="https://www.instagram.com/minuri_senara/?next=%2F"
                   target="_blank"
+                  rel="noreferrer"
                   className="contactbtn"
                 >
                   <div className="Touch">
@@ -391,6 +385,7 @@ function Work() {
                 <a
                   href="https://wa.me/+94713775404"
                   target="_blank"
+                  rel="noreferrer"
                   className="contactbtn"
                 >
                   <div className="Touch">

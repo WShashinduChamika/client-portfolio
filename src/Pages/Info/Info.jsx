@@ -1,26 +1,13 @@
-import Logo from "../../Assets/Logo.png";
-import { Link, useLocation } from "react-router-dom";
 import "./Info.css";
 
-import Minuri from "../../Assets/Minuri.png";
-import flyers from "../../Assets/flyers.png";
 import Ai from "../../Assets/Ai.png";
 import css from "../../Assets/CSS.png";
-import flutter from "../../Assets/Flutter.png";
 import html from "../../Assets/HTML.png";
-import Java from "../../Assets/Java.png";
 import js from "../../Assets/JS.png";
-import mongo from "../../Assets/Mongo.png";
-import Mysql from "../../Assets/MySql.png";
 import PS from "../../Assets/PS.png";
-import Reacts from "../../Assets/React.png";
 import XD from "../../Assets/Xd.png";
 import figma from "../../Assets/figma.png";
 import webflow from "../../Assets/Webflow.png";
-import node from "../../Assets/Node.png";
-import PHP from "../../Assets/PHP.png";
-import Dart from "../../Assets/Dart.png";
-import Firebase from "../../Assets/Firebase.png";
 import Me from "../../Assets/Me2.png";
 import Frame42 from "../../Assets/Me2.png";
 import { useEffect, useState } from "react";
@@ -28,21 +15,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "../../Components/Navbar/Navbar";
 
 function Info() {
-  const location = useLocation();
-  // Get the current location
 
-  // Determine the active section based on the current URL path
-  const isWorkPage = location.pathname === "/Work";
-  const isInfoPage = location.pathname === "/Info";
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
-
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [currentChapter, setCurrentChapter] = useState(0);
-  
-  const toggleDropdown = () => {
-    setDropdownOpen(!isDropdownOpen);
-  };
 
   // Story chapters data
   const storyChapters = [
@@ -76,7 +50,7 @@ function Info() {
 
   useEffect(() => {
     document.title = "Info";
-  }, {});
+  }, []);
   return (
     <div>
       <div className="section-nav">

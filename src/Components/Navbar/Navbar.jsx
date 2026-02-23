@@ -1,23 +1,19 @@
 import "./Navbar.css";
 import Logo from "../../Assets/Logo.png";
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react"; // Import hooks for state and effects
+import { useState, useEffect } from "react";
+
+// Defined outside component so it's a stable reference (fixes exhaustive-deps)
+const navItems = [
+  { to: "/Work", label: "Work" },
+  { to: "/Info", label: "Info" },
+  { to: "/Blogs", label: "Blogs" },
+];
 
 function Navbar() {
-  const location = useLocation(); // Correctly call useLocation
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
+  const location = useLocation();
+  const [isMenuOpen] = useState(false);
 
-  // Determine the active section based on the current URL path
-  const isWorkPage = location.pathname === "/Work";
-  const isInfoPage = location.pathname === "/Info";
-  const isBlogsPage = location.pathname === "/Blogs";
-
-  // Nav items used by the navbar
-  const navItems = [
-    { to: "/Work", label: "Work" },
-    { to: "/Info", label: "Info" },
-    { to: "/Blogs", label: "Blogs" },
-  ];
   const navCount = navItems.length;
 
   // Keep active index in state so UI updates reliably when route changes
@@ -30,7 +26,7 @@ function Navbar() {
     let idx = navItems.findIndex((item) => item.to === location.pathname);
     if (idx < 0) idx = 0;
     setActiveIndex(idx);
-  }, [location.pathname]);
+  }, [location.pathname]); // navItems is a module-level constant, not reactive
 
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 

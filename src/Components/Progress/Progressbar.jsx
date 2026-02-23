@@ -1,7 +1,6 @@
 import "./Progressbar.css";
-import Logo from "../../Assets/Logo.png";
 import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Progressbar({ value = 0, onComplete, showButton }) {
   const [present, setPresent] = useState(value);

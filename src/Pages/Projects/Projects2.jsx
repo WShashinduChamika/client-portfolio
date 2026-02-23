@@ -1,16 +1,12 @@
 import "./Projects.css";
 import Arrow from "../../Assets/right-arrow.png";
-import { Link, useLocation } from "react-router-dom";
-import Project1 from "../../Assets/Project1.png";
+import { Link } from "react-router-dom";
 import Project3 from "../../Assets/Project3.png";
-import pro1 from "../../Assets/Pro1.png";
 import Procover2 from "../../Assets/Project2Cover.png";
 import ProImg from "../../Assets/ProImg.png";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Ai from "../../Assets/Ai.png";
 import css from "../../Assets/CSS.png";
-import flutter from "../../Assets/Flutter.png";
 import html from "../../Assets/HTML.png";
 import js from "../../Assets/JS.png";
 import Mysql from "../../Assets/MySql.png";
@@ -22,7 +18,7 @@ import Miro from "../../Assets/Miro.png";
 import ProScreen01 from "../../Assets/Pro2Screen01.png";
 import ProScreen02 from "../../Assets/Pro2Screen02.png";
 import ProScreen03 from "../../Assets/Pro2Screen03.png";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 function Projects() {
   const navigate = useNavigate();
@@ -30,10 +26,6 @@ function Projects() {
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to the top of the page when the component mounts
   }, []);
-
-  const BackButton = () => {
-    const navigate = useNavigate();
-  };
 
   const handleBack = () => {
     navigate(-1);
@@ -44,7 +36,7 @@ function Projects() {
 
   useEffect(() => {
     document.title = "MoodWave";
-  }, {});
+  }, []);
 
   return (
     <div className="AboutSec2">
@@ -143,11 +135,8 @@ function Projects() {
       </div>
 
       <div className="GrapicSection">
-        <a
+        <div
           className="Grapicscard"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="#"
         >
           <div className="headGrapic">Technologies</div>
           <div className="LogoPro TechStack">
@@ -163,7 +152,7 @@ function Projects() {
 
             <img src={Miro} className="Tech" alt="Logo" />
           </div>
-        </a>
+        </div>
       </div>
       <br />
       <div className="double-column-block">

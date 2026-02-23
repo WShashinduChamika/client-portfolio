@@ -1,52 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './Blogs.css';
 import Navbar from '../../Components/Navbar/Navbar';
 
-// Import blog thumbnail image
+// Fallback thumbnail image
 import blogThumb from '../../Assets/Project1.png';
+
+const API_BASE_URL = 'http://localhost:5001';
+
+// Map frontend display label → backend category value
+const categoryMap = {
+  'All': null,
+  'Design': 'design',
+  'Our Mind': 'our-mind',
+  'Others': 'others',
+};
+
+const PAGE_SIZE = 6;
 
 function Blogs() {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState('All');
-
-  // Sample blog data
-  const blogs = [
-    {
-      id: 1,
-      title: 'How to work with Team and client',
-      description: 'As in my previous article, this one is also based on my personal experience. This time, I want to share one of the most inspiring examples of leadership I encountered during my university life, where I had the privilege of working with an exceptional leader...',
-      image: blogThumb,
-      category: 'Design'
-    },
-    {
-      id: 2,
-      title: 'How to work with Team and client',
-      description: 'As in my previous article, this one is also based on my personal experience. This time, I want to share one of the most inspiring examples of leadership I encountered during my university life, where I had the privilege of working with an exceptional leader...',
-      image: blogThumb,
-      category: 'Our Mind'
-    },
-    {
-      id: 3,
-      title: 'How to work with Team and client',
-      description: 'As in my previous article, this one is also based on my personal experience. This time, I want to share one of the most inspiring examples of leadership I encountered during my university life, where I had the privilege of working with an exceptional leader...',
-      image: blogThumb,
-      category: 'Design'
-    },
-    {
-      id: 4,
-      title: 'How to work with Team and client',
-      description: 'As in my previous article, this one is also based on my personal experience. This time, I want to share one of the most inspiring examples of leadership I encountered during my university life, where I had the privilege of working with an exceptional leader...',
-      image: blogThumb,
-      category: 'Others'
-    }
-  ];
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const categories = ['All', 'Design', 'Our Mind', 'Others'];
 
-  const filteredBlogs = activeCategory === 'All' 
-    ? blogs 
-    : blogs.filter(blog => blog.category === activeCategory);
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const params = { published: 'true', limit: PAGE_SIZE, page: currentPage };
+        const backendCategory = categoryMap[activeCategory];
+        if (backendCategory) {
+          params.category = backendCategory;
+        }
+        const { data } = await axios.get(`${API_BASE_URL}/api/blogs`, { params });
+        setBlogs(data.data.blogs);
+        setTotalPages(data.data.pagination.totalPages);
+      } catch (err) {
+        setError('Failed to load blogs. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, [activeCategory, currentPage]);
+
+  const handleCategoryChange = (category) => {
+    setActiveCategory(category);
+    setCurrentPage(1);
+  };
+
+  const getCoverImage = (coverImage) => {
+    if (!coverImage) return blogThumb;
+    if (coverImage.startsWith('http')) return coverImage;
+    return `${API_BASE_URL}${coverImage}`;
+  };
+
+  const getPlainText = (html) => {
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    return doc.body.textContent || '';
+  };
 
   const handleBlogClick = (blogId) => {
     navigate(`/blog/${blogId}`);
@@ -63,30 +83,79 @@ function Blogs() {
             <button
               key={category}
               className={`category-btn ${activeCategory === category ? 'active' : ''}`}
-              onClick={() => setActiveCategory(category)}
+              onClick={() => handleCategoryChange(category)}
             >
               {category}
             </button>
           ))}
         </div>
 
-        <div className='blogs-list'>
-          {filteredBlogs.map((blog) => (
-            <div 
-              key={blog.id} 
-              className='blog-card'
-              onClick={() => handleBlogClick(blog.id)}
-            >
-              <div className='blog-image-container'>
-                <img src={blog.image} alt={blog.title} className='blog-image' />
-              </div>
-              <div className='blog-content'>
-                <h2 className='blog-title'>{blog.title}</h2>
-                <p className='blog-description'>{blog.description}</p>
-              </div>
+        {loading && <div className='blogs-loading'>Loading blogs...</div>}
+        {error && <div className='blogs-error'>{error}</div>}
+
+        {!loading && !error && (
+          <>
+            <div className='blogs-list'>
+              {blogs.length === 0 ? (
+                <p className='blogs-empty'>No blogs found in this category.</p>
+              ) : (
+                blogs.map((blog) => (
+                  <div
+                    key={blog._id}
+                    className='blog-card'
+                    onClick={() => handleBlogClick(blog._id)}
+                  >
+                    <div className='blog-image-container'>
+                      <img src={getCoverImage(blog.coverImage)} alt={blog.title} className='blog-image' />
+                    </div>
+                    <div className='blog-content'>
+                      <h2 className='blog-title'>{blog.title}</h2>
+                      <p className='blog-description'>
+                        {blog.excerpt
+                          ? blog.excerpt
+                          : blog.content
+                            ? getPlainText(blog.content).slice(0, 200) + '...'
+                            : ''}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
-          ))}
-        </div>
+
+            {totalPages > 1 && (
+              <div className='blogs-pagination'>
+                <button
+                  className='pagination-btn'
+                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                  disabled={currentPage === 1}
+                >
+                  ← Prev
+                </button>
+
+                <div className='pagination-pages'>
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <button
+                      key={page}
+                      className={`pagination-page ${currentPage === page ? 'active' : ''}`}
+                      onClick={() => setCurrentPage(page)}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  className='pagination-btn'
+                  onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                  disabled={currentPage === totalPages}
+                >
+                  Next →
+                </button>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );

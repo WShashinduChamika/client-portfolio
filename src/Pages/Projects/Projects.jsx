@@ -1,8 +1,7 @@
 import "./Projects.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Arrow from "../../Assets/right-arrow.png";
 import Procover1 from "../../Assets/Project1Cover.png";
-import pro1 from "../../Assets/Pro1.png";
 import ProImg from "../../Assets/ProImg.png";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +10,6 @@ import flutter from "../../Assets/Flutter.png";
 import mongo from "../../Assets/Mongo.png";
 import Reacts from "../../Assets/React.png";
 import figma from "../../Assets/figma.png";
-import node from "../../Assets/Node.png";
 import Dart from "../../Assets/Dart.png";
 import AWS from "../../Assets/AWS.png";
 import JWT from "../../Assets/JWT.png";
@@ -20,7 +18,7 @@ import ProScreen01 from "../../Assets/ProScreen01.png";
 import ProScreen02 from "../../Assets/ProScreen02.png";
 import ProScreen03 from "../../Assets/ProScreen03.png";
 import Project2 from "../../Assets/Project2.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 function Projects() {
@@ -136,11 +134,8 @@ function Projects() {
       </div>
 
       <div className="GrapicSection">
-        <a
+        <div
           className="Grapicscard"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="#"
         >
           <div className="headGrapic">Technologies</div>
           <div className="LogoPro">
@@ -154,7 +149,7 @@ function Projects() {
             <img src={Ai} className="Tech" alt="Logo" />
             <img src={Miro} className="Tech" alt="Logo" />
           </div>
-        </a>
+        </div>
       </div>
       <br />
       <div className="double-column-block">

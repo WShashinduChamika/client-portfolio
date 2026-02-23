@@ -4,6 +4,7 @@ import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BlogCreateForm from "@/components/dashboard/BlogCreateForm";
 import BlogList from "@/components/dashboard/BlogList";
+import type { Blog } from "@/types/blog";
 
 // ---------------------------------------------------------------------------
 // Page
@@ -11,7 +12,29 @@ import BlogList from "@/components/dashboard/BlogList";
 
 export default function BlogsPage() {
   const [showForm, setShowForm] = useState(false);
+  const [editingBlog, setEditingBlog] = useState<Blog | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
+
+  const isFormOpen = showForm || !!editingBlog;
+
+  const handleCloseForm = () => {
+    setShowForm(false);
+    setEditingBlog(null);
+  };
+
+  const handleSuccess = () => {
+    setRefreshKey((k) => k + 1);
+  };
+
+  const handleNewPost = () => {
+    setEditingBlog(null);
+    setShowForm((s) => !s);
+  };
+
+  const handleEdit = (blog: Blog) => {
+    setShowForm(false);
+    setEditingBlog(blog);
+  };
 
   return (
     <div className="flex flex-col gap-6">
@@ -23,24 +46,26 @@ export default function BlogsPage() {
         </div>
         <Button
           size="sm"
-          onClick={() => setShowForm((s) => !s)}
+          onClick={handleNewPost}
           className="gap-1.5 bg-linear-to-r from-indigo-600 to-violet-600 text-white shadow-md shadow-indigo-500/20 hover:opacity-90"
         >
           <Plus className="h-4 w-4" />
-          {showForm ? "Close" : "New Post"}
+          {isFormOpen && !editingBlog ? "Close" : "New Post"}
         </Button>
       </div>
 
-      {/* Create form */}
-      {showForm && (
+      {/* Create / Edit form */}
+      {isFormOpen && (
         <BlogCreateForm
-          onClose={() => setShowForm(false)}
-          onSuccess={() => setRefreshKey((k) => k + 1)}
+          key={editingBlog?._id ?? "new"}
+          blog={editingBlog ?? undefined}
+          onClose={handleCloseForm}
+          onSuccess={handleSuccess}
         />
       )}
 
       {/* Blog list */}
-      <BlogList refreshKey={refreshKey} />
+      <BlogList refreshKey={refreshKey} onEdit={handleEdit} />
     </div>
   );
 }

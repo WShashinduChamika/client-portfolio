@@ -8,11 +8,13 @@ import {
   Tag,
   Loader2,
   FileText,
+  Pencil,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import api from "@/lib/axios";
 import { toast } from "sonner";
+import type { Blog } from "@/types/blog";
 import "react-quill-new/dist/quill.snow.css";
 
 // ---------------------------------------------------------------------------
@@ -28,8 +30,10 @@ const CATEGORY_OPTIONS = ["design", "our-mind", "others"] as const;
 export interface BlogCreateFormProps {
   /** Called when the form is dismissed (cancel or successful submit) */
   onClose: () => void;
-  /** Called after a blog is successfully created */
+  /** Called after a blog is successfully created/updated */
   onSuccess?: () => void;
+  /** When provided the form operates in edit mode */
+  blog?: Blog;
 }
 
 // ---------------------------------------------------------------------------
@@ -42,16 +46,26 @@ const ReactQuill = dynamic(() => import("react-quill-new"), { ssr: false });
 // Component
 // ---------------------------------------------------------------------------
 
-export default function BlogCreateForm({ onClose, onSuccess }: BlogCreateFormProps) {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [excerpt, setExcerpt] = useState("");
-  const [category, setCategory] = useState<string>(CATEGORY_OPTIONS[0]);
+export default function BlogCreateForm({ onClose, onSuccess, blog }: BlogCreateFormProps) {
+  const isEditMode = !!blog;
+
+  const [title, setTitle] = useState(blog?.title ?? "");
+  const [content, setContent] = useState(blog?.content ?? "");
+  const [excerpt, setExcerpt] = useState(blog?.excerpt ?? "");
+  const [category, setCategory] = useState<string>(blog?.category ?? CATEGORY_OPTIONS[0]);
   const [tagsInput, setTagsInput] = useState("");
-  const [tags, setTags] = useState<string[]>([]);
-  const [isPublished, setIsPublished] = useState(false);
+  const [tags, setTags] = useState<string[]>(blog?.tags ?? []);
+  const [isPublished, setIsPublished] = useState(blog?.isPublished ?? false);
   const [coverFile, setCoverFile] = useState<File | null>(null);
-  const [coverPreview, setCoverPreview] = useState<string | null>(null);
+  // For edit mode — tracks the existing server-side cover path
+  const [existingCoverImage, setExistingCoverImage] = useState<string | null>(
+    blog?.coverImage || null
+  );
+  const [coverPreview, setCoverPreview] = useState<string | null>(
+    blog?.coverImage
+      ? `${process.env.NEXT_PUBLIC_API_URL}${blog.coverImage}`
+      : null
+  );
   const [loading, setLoading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
 
@@ -72,6 +86,7 @@ export default function BlogCreateForm({ onClose, onSuccess }: BlogCreateFormPro
   const removeCover = () => {
     setCoverFile(null);
     setCoverPreview(null);
+    setExistingCoverImage(null);
     if (fileRef.current) fileRef.current.value = "";
   };
 
@@ -97,6 +112,7 @@ export default function BlogCreateForm({ onClose, onSuccess }: BlogCreateFormPro
     setTagsInput("");
     setTags([]);
     setIsPublished(false);
+    setExistingCoverImage(null);
     removeCover();
   };
 
@@ -114,7 +130,13 @@ export default function BlogCreateForm({ onClose, onSuccess }: BlogCreateFormPro
     }
 
     setLoading(true);
-    const toastId = toast.loading(publish ? "Publishing post…" : "Saving draft…");
+    const toastId = toast.loading(
+      isEditMode
+        ? "Updating post…"
+        : publish
+        ? "Publishing post…"
+        : "Saving draft…"
+    );
     try {
       const form = new FormData();
       form.append("title", title.trim());
@@ -123,19 +145,36 @@ export default function BlogCreateForm({ onClose, onSuccess }: BlogCreateFormPro
       form.append("category", category);
       form.append("tags", tags.join(","));
       form.append("isPublished", publish ? "true" : "false");
-      if (coverFile) form.append("coverImage", coverFile);
 
-      await api.post("/api/blogs", form, {
-        headers: { "Content-Type": undefined },
-      });
+      if (coverFile) {
+        // New file selected — upload it
+        form.append("coverImage", coverFile);
+      } else if (isEditMode) {
+        // No new file; pass existing path so backend keeps it (or clears if null)
+        form.append("coverImage", existingCoverImage ?? "");
+      }
+
+      if (isEditMode) {
+        await api.put(`/api/blogs/${blog!._id}`, form, {
+          headers: { "Content-Type": undefined },
+        });
+      } else {
+        await api.post("/api/blogs", form, {
+          headers: { "Content-Type": undefined },
+        });
+      }
 
       toast.success(
-        publish ? "Blog published successfully!" : "Draft saved successfully!",
+        isEditMode
+          ? "Blog updated successfully!"
+          : publish
+          ? "Blog published successfully!"
+          : "Draft saved successfully!",
         { id: toastId }
       );
 
       onSuccess?.();
-      resetForm();
+      if (!isEditMode) resetForm();
       onClose();
     } catch (err: unknown) {
       const msg =
@@ -164,12 +203,18 @@ export default function BlogCreateForm({ onClose, onSuccess }: BlogCreateFormPro
       {/* Header */}
       <div className="flex items-center justify-between border-b bg-linear-to-r from-indigo-50 to-violet-50 px-6 py-4">
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-100">
-            <FileText className="h-4 w-4 text-indigo-600" />
+          <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${isEditMode ? "bg-amber-100" : "bg-indigo-100"}`}>
+            {isEditMode
+              ? <Pencil className="h-4 w-4 text-amber-600" />
+              : <FileText className="h-4 w-4 text-indigo-600" />}
           </div>
           <div>
-            <p className="text-sm font-semibold text-gray-800">New Blog Post</p>
-            <p className="text-xs text-muted-foreground">Fill in the details below</p>
+            <p className="text-sm font-semibold text-gray-800">
+              {isEditMode ? "Edit Blog Post" : "New Blog Post"}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              {isEditMode ? `Editing: ${blog!.title}` : "Fill in the details below"}
+            </p>
           </div>
         </div>
         <button

@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import {
   Pencil, Trash2, BookOpen, RefreshCw, AlertCircle,
-  ChevronLeft, ChevronRight,
+  ChevronLeft, ChevronRight, TriangleAlert,
 } from "lucide-react";
 import {
   Card,
@@ -14,6 +14,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import api from "@/lib/axios";
 import { toast } from "sonner";
 import type { Blog, BlogListResponse, BlogPagination } from "@/types/blog";
@@ -122,18 +130,21 @@ function ErrorState({ onRetry }: { onRetry: () => void }) {
 export interface BlogListProps {
   /** Increment to trigger a fresh fetch — e.g. after creating a blog. */
   refreshKey?: number;
+  /** Called when the user clicks Edit on a blog row. */
+  onEdit?: (blog: Blog) => void;
 }
 
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 
-export default function BlogList({ refreshKey = 0 }: BlogListProps) {
+export default function BlogList({ refreshKey = 0, onEdit }: BlogListProps) {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [pagination, setPagination] = useState<BlogPagination | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [confirmBlog, setConfirmBlog] = useState<Blog | null>(null);
 
   // ── Filters & page ───────────────────────────────────────────────────────
   const [category, setCategory] = useState<CategoryFilter>("all");
@@ -180,15 +191,18 @@ export default function BlogList({ refreshKey = 0 }: BlogListProps) {
 
   // ── Delete ───────────────────────────────────────────────────────────────
 
-  const handleDelete = async (blog: Blog) => {
-    if (!confirm(`Delete "${blog.title}"? This cannot be undone.`)) return;
+  const handleDelete = (blog: Blog) => setConfirmBlog(blog);
+
+  const handleConfirmDelete = async () => {
+    if (!confirmBlog) return;
+    const blog = confirmBlog;
+    setConfirmBlog(null);
 
     setDeletingId(blog._id);
     const toastId = toast.loading("Deleting blog…");
     try {
       await api.delete(`/api/blogs/${blog._id}`);
       toast.success("Blog deleted successfully.", { id: toastId });
-      // If we deleted the last item on a page > 1, go back one page
       if (blogs.length === 1 && page > 1) {
         setPage((p) => p - 1);
       } else {
@@ -354,6 +368,7 @@ export default function BlogList({ refreshKey = 0 }: BlogListProps) {
                       size="icon"
                       className="h-7 w-7 cursor-pointer text-muted-foreground hover:text-indigo-600"
                       title="Edit"
+                      onClick={() => onEdit?.(blog)}
                     >
                       <Pencil className="h-3.5 w-3.5" />
                     </Button>
@@ -456,6 +471,56 @@ export default function BlogList({ refreshKey = 0 }: BlogListProps) {
           )}
         </div>
       )}
+
+      {/* ── Delete confirmation dialog ──────────────────────────────────── */}
+      <Dialog open={!!confirmBlog} onOpenChange={(open: boolean) => { if (!open) setConfirmBlog(null); }}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <div className="mx-auto mb-2 flex h-14 w-14 items-center justify-center rounded-full bg-red-100">
+              <TriangleAlert className="h-7 w-7 text-red-500" />
+            </div>
+            <DialogTitle className="text-center text-base">
+              Delete Blog Post?
+            </DialogTitle>
+            <DialogDescription className="text-center text-sm">
+              You are about to permanently delete{" "}
+              <span className="font-semibold text-foreground">
+                &ldquo;{confirmBlog?.title}&rdquo;
+              </span>
+              . This action{" "}
+              <span className="font-semibold text-red-600">cannot be undone</span>.
+            </DialogDescription>
+          </DialogHeader>
+
+          {/* Cover image preview if available */}
+          {confirmBlog?.coverImage && (
+            <div className="overflow-hidden rounded-xl border border-border">
+              <img
+                src={`${process.env.NEXT_PUBLIC_API_URL}${confirmBlog.coverImage}`}
+                alt={confirmBlog.title}
+                className="h-32 w-full object-cover opacity-80"
+              />
+            </div>
+          )}
+
+          <DialogFooter className="gap-2 sm:gap-2">
+            <Button
+              variant="outline"
+              className="flex-1 cursor-pointer"
+              onClick={() => setConfirmBlog(null)}
+            >
+              Cancel
+            </Button>
+            <Button
+              className="flex-1 cursor-pointer bg-red-600 text-white hover:bg-red-700 shadow-md shadow-red-500/20"
+              onClick={handleConfirmDelete}
+            >
+              <Trash2 className="mr-1.5 h-4 w-4" />
+              Yes, Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

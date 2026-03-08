@@ -43,6 +43,7 @@ function Work() {
   return (
     <div>
       <Navbar />
+      <div className="page-wrapper">
       <br />
       <motion.div
         className="pagecontent"
@@ -424,6 +425,7 @@ function Work() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

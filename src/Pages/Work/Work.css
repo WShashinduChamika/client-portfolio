@@ -488,109 +488,13 @@ input:checked + .slider {
   padding: 28px;
 }
 
-/* Tablet view */
-@media (max-width: 1024px) {
-  .services-section {
-    padding: 40px 0px;
-  }
-
-  .services-grid {
-    gap: 24px;
-    padding: 0 30px;
-    flex-wrap: wrap;
-  }
-
-  .service-card {
-    width: calc(50% - 12px);
-    padding: 32px 16px;
-  }
-
-  .service-title {
-    font-size: 20px;
-    height: auto;
-  }
-
-  .service-desc {
-    font-size: 16px;
-  }
-}
-
-/* Mobile view */
-@media (max-width: 768px) {
-  .services-section {
-    padding: 30px 0px;
-  }
-
-  .services-grid {
-    gap: 20px;
-    padding: 0 20px;
-  }
-
-  .service-card {
-    width: 100%;
-    max-width: 400px;
-    padding: 28px 16px;
-  }
-
-  .service-badge {
-    width: 44px;
-    height: 44px;
-  }
-
-  .service-title {
-    font-size: 20px;
-    margin-top: 16px;
-    height: auto;
-  }
-
-  .service-desc {
-    font-size: 16px;
-    margin-top: 12px;
-  }
-
-  .Volhead {
-    font-size: 28px;
-    margin-top: 40px;
-  }
-}
-
-/* Small mobile view */
-@media (max-width: 480px) {
-  .services-section {
-    padding: 20px 0px;
-  }
-
-  .services-grid {
-    gap: 16px;
-    padding: 0 16px;
-  }
-
-  .service-card {
-    width: 100%;
-    padding: 24px 14px;
-  }
-
-  .service-badge {
-    width: 40px;
-    height: 40px;
-    padding: 10px 14px;
-  }
-
-  .service-title {
-    font-size: 18px;
-    margin-top: 14px;
-  }
-
-  .service-desc {
-    font-size: 15px;
-    margin-top: 10px;
-    line-height: 1.5;
-  }
-
-  .Volhead {
-    font-size: 24px;
-    margin-top: 30px;
-  }
+/* ── Page wrapper: keeps all content aligned with navbar ── */
+.page-wrapper {
+  padding: 0 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .seconDes {
@@ -748,7 +652,7 @@ input:checked + .slider {
 
 .card {
   margin: 10px;
-  width: 50%;
+  width: 60%;
   cursor: pointer;
   border-radius: 24px;
   text-decoration: none;
@@ -905,7 +809,8 @@ tbody td {
 .container-footer {
   grid-row-gap: 64px;
   flex-direction: column;
-  width: 882px;
+  width: 100%;
+  max-width: 882px;
   display: flex;
   margin: 0;
 }
@@ -1070,7 +975,19 @@ tbody td {
   width: 45px;
 }
 
-@media (max-width: 1049px) {
+
+.more-projects-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.more-projects-button-container .Touch {
+  background: radial-gradient(ellipse at center top, #0F9A9E99 0%, #00000000 100%);
+}
+
+/* Large tablet / small laptop */
+@media (max-width: 1200px) {
   .main-head {
     font-size: 33px;
   }
@@ -1083,23 +1000,7 @@ tbody td {
   .Second-head {
     font-size: 18px;
   }
-}
 
-@media (max-width: 929px) {
-  .main-head {
-    font-size: 20px;
-  }
-
-  .Date-time-section {
-    font-size: 13px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: left;
-  }
-}
-
-@media (max-width: 1105px) {
   .main-content {
     display: grid;
   }
@@ -1107,6 +1008,7 @@ tbody td {
   .part_two {
     width: 100%;
   }
+
   .pagecontent {
     display: grid;
     justify-content: center;
@@ -1121,7 +1023,7 @@ tbody td {
   }
 
   .card {
-    width: 100%;
+    width: 65%;
   }
 
   .Bigtext1 {
@@ -1142,7 +1044,6 @@ tbody td {
     font-size: 16px;
     color: #797979;
     font-weight: 500;
-    text-align: center;
     text-align: left;
   }
 
@@ -1151,6 +1052,7 @@ tbody td {
     margin-right: -20px;
     padding-left: 0px;
   }
+
   .Minuri2 {
     height: auto;
     width: 194px;
@@ -1205,7 +1107,46 @@ tbody td {
   }
 }
 
-@media (max-width: 961px) {
+/* Tablet landscape */
+@media (max-width: 1024px) {
+  .page-wrapper { padding: 0 24px; }
+
+  .services-section {
+    padding: 40px 0px;
+  }
+
+  .services-grid {
+    gap: 24px;
+    padding: 0 30px;
+    flex-wrap: wrap;
+  }
+
+  .service-card {
+    width: calc(50% - 12px);
+    padding: 32px 16px;
+  }
+
+  .service-title {
+    font-size: 20px;
+    height: auto;
+  }
+
+  .service-desc {
+    font-size: 16px;
+  }
+
+  .main-head {
+    font-size: 32px;
+  }
+
+  .Date-time-section {
+    font-size: 13px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: left;
+  }
+
   tbody td {
     font-size: small;
   }
@@ -1213,9 +1154,53 @@ tbody td {
   .Bigtext1 {
     font-size: 23px;
   }
+
+  .card {
+    width: 60%;
+    margin: 10px;
+  }
 }
 
-@media (max-width: 893px) {
+/* Tablet portrait / mobile landscape */
+@media (max-width: 768px) {
+  .page-wrapper { padding: 0 16px; }
+
+  .services-section {
+    padding: 30px 0px;
+  }
+
+  .services-grid {
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  .service-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 28px 16px;
+  }
+
+  .service-badge {
+    width: 44px;
+    height: 44px;
+  }
+
+  .service-title {
+    font-size: 20px;
+    margin-top: 16px;
+    height: auto;
+  }
+
+  .service-desc {
+    font-size: 16px;
+    margin-top: 12px;
+  }
+
+  .Volhead {
+    font-size: 28px;
+    margin-top: 40px;
+  }
+
   .head_name {
     font-size: 32px;
     line-height: 40px;
@@ -1229,22 +1214,11 @@ tbody td {
   .text-under-copyright {
     font-size: 11px;
   }
-}
 
-@media (max-width: 837px) {
   body {
-    padding: 37px;
-    justify-content: center;
     overflow-x: hidden;
   }
-}
 
-@media (max-width: 900px) {
-  body {
-    padding: 37px;
-    justify-content: center;
-    overflow-x: hidden;
-  }
   .main-head {
     font-size: 38px;
   }
@@ -1267,6 +1241,7 @@ tbody td {
   .logo-block .logomark2 {
     margin-left: 58px;
   }
+
   .first_bar {
     width: 96%;
   }
@@ -1287,16 +1262,57 @@ tbody td {
   .logomark2 {
     display: none;
   }
+
+  .card {
+    width: 100%;
+    margin: 8px 0;
+  }
 }
 
+/* Small mobile */
+@media (max-width: 480px) {
+  .page-wrapper { padding: 0 12px; }
 
-.more-projects-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
+  .services-section {
+    padding: 20px 0px;
+  }
+
+  .services-grid {
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  .service-card {
+    width: 100%;
+    padding: 24px 14px;
+  }
+
+  .service-badge {
+    width: 40px;
+    height: 40px;
+    padding: 10px 14px;
+  }
+
+  .service-title {
+    font-size: 18px;
+    margin-top: 14px;
+  }
+
+  .service-desc {
+    font-size: 15px;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+
+  .Volhead {
+    font-size: 24px;
+    margin-top: 30px;
+  }
+
+  .card {
+    width: 100%;
+    margin: 6px 0;
+  }
 }
 
-.more-projects-button-container .Touch {
-  background: radial-gradient(ellipse at center top, #0F9A9E99 0%, #00000000 100%);
-}
 

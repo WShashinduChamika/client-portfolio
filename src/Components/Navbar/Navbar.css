@@ -48,7 +48,8 @@
 }
 
 .Navbar {
-  margin: 40px;
+  margin: 40px 50px;
+  max-width: 1400px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -124,6 +125,7 @@ a {
   opacity: 1;
   align-items: center;
   margin-bottom: 60px;
+  padding: 0px;
   transition: background-color 0.3s ease;
 }
 
@@ -260,12 +262,13 @@ a {
   justify-content: center;
   align-items: center;
 }
-
-.Navbar {
-  justify-content: space-between;
-}
+  
 
 @media only screen and (max-width: 1220px) {
+  .Navbar {
+    margin: 40px 50px;
+  }
+
   .nav-pill-wrapper {
     margin-left: 150px;
     margin-right: 150px;
@@ -277,6 +280,10 @@ a {
 }
 
 @media only screen and (max-width: 1078px) {
+  .Navbar {
+    margin: 40px 30px;
+  }
+
   .nav-pill-wrapper {
     margin-left: 100px;
     margin-right: 100px;
@@ -288,6 +295,10 @@ a {
 }
 
 @media only screen and (max-width: 890px) {
+  .Navbar {
+    margin: 40px 20px;
+  }
+
   .chip-socials-wrapper {
     display: none;
   }
@@ -342,6 +353,10 @@ a {
 }
 
 @media only screen and (max-width: 900px) {
+  .Navbar {
+    margin: 40px 16px;
+  }
+
   .text-logo {
     display: none;
   }

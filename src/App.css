@@ -17,3 +17,36 @@ h6 {
 body {
   cursor: url("../src/Assets/cursor.png"), auto;
 }
+
+@media (max-width: 1536px) {
+  body {
+    padding: 100px;
+  }
+}
+
+/* ── Responsive body padding ── */
+@media (max-width: 1200px) {
+  body {
+    padding: 50px;
+  }
+}
+
+@media (max-width: 1024px) {
+  body {
+    padding: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 50px;
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 30px;
+    overflow-x: hidden;
+  }
+}

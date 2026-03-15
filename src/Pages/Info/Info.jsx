@@ -57,6 +57,7 @@ function Info() {
         <Navbar />
       </div>
 
+      <div className="info-content">
       <motion.div
         class="overline-wrapper"
         initial={{ opacity: 0, y: 50 }} // start with 0 opacity and below the screen
@@ -112,7 +113,7 @@ function Info() {
 
         <div className="window-outline">
           <div className="Meholder">
-            <img src={Me} className="Me" alt="Logo" />
+            <img src={Me} className="Me" alt="Portrait of Minuri" />
           </div>
         </div>
         {/* Decorative box removed from Aboutpart; moved to story section below */}
@@ -230,6 +231,8 @@ function Info() {
             </AnimatePresence>
           </aside>
         </div>
+      </div>
+
       </div>
 
       <div

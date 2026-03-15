@@ -6,6 +6,11 @@
   padding-top: 200px;
 }
 
+.info-content {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
 .icon-section-dot {
   background-color: white;
   border-radius: 50%;
@@ -83,6 +88,7 @@
 
 .Aboutpart {
   display: flex;
+  align-items: center;
   margin-top: 100px;
   gap: 50px;
 }
@@ -110,11 +116,21 @@
   margin-right: 0px;
 }
 
+.Meholder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
 .Me {
   width: 100%;
-  height: 474px;
-  border-radius: 24px;
-  /* object-fit: cover; */
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .AboutHead {
@@ -150,9 +166,8 @@
 
 .Meholder::after {
   content: "";
-
-  top: 0;
-  left: 0;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   background-image: linear-gradient(
@@ -174,7 +189,8 @@
 
 /* make the story container a positioning context for the floating panel */
 .story-carousel-container {
-  max-width: 700px;
+  flex: 1;
+  min-width: 0;
   position: relative;
   display: flex;
 }
@@ -194,8 +210,9 @@
 
 .story-chapters {
   display: flex;
+  align-items: flex-start;
   justify-content: center;
-  gap: 50px;
+  gap: 40px;
   margin-bottom: 30px;
 }
 
@@ -264,6 +281,8 @@
   justify-content: space-between;
   align-items: center;
   gap: 50px;
+  min-width: 0;
+  width: 100%;
 }
 
 .story-card {
@@ -274,19 +293,18 @@
   border-radius: 20px;
   padding: 30px;
   min-height: 400px;
-  min-width: 620px;
-  max-width: 620px;
+  min-width: 0;
+  width: 100%;
   flex: 1;
   transition: all 0.3s ease;
 }
 
 /* Floating panel that mirrors the requested translucent box, placed on the right of the story section */
 .story-floating-box {
-  /* position: absolute;
-  top: 11px;
-  right: 8.33px; */
-  width: 327.33038330078125px;
-  height: 417px;
+  flex-shrink: 0;
+  width: clamp(200px, 25vw, 327px);
+  height: auto;
+  min-height: 417px;
   border-radius: 12px;
   background: #FFFFFF0D; /* updated semi-transparent white per design */
   backdrop-filter: blur(48.599998474121094px);
@@ -298,6 +316,9 @@
   border: 1px solid rgba(255,255,255,0.06);
   color: #fff;
   overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Large number styling inside the floating box */
@@ -305,15 +326,15 @@
   font-family: Inter, sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 200.38px;
+  font-size: clamp(80px, 15vw, 200px);
   line-height: 100%;
   letter-spacing: 0%;
   color: #FFFFFF0D; /* use requested translucent white for text */
   margin: 0;
   padding: 0;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
   height: 100%;
   background: transparent;
 }
@@ -404,7 +425,23 @@
   z-index: 50; /* ensure it's above other content */
 }
 
+@media only screen and (max-width: 1220px) {
+  .info-content {
+    margin: 0 50px;
+  }
+}
+
+@media only screen and (max-width: 1078px) {
+  .info-content {
+    margin: 0 30px;
+  }
+}
+
 @media (max-width: 900px) {
+  .info-content {
+    margin: 0 16px;
+  }
+
   .text-hero.info-hero {
     width: 100%;
   }
@@ -429,58 +466,67 @@
   .Grapicscard {
     padding: 8%;
   }
-}
 
-@media (max-width: 900px) {
   /* hide the decorative floating box on smaller screens */
   .right-floating-box {
     display: none;
   }
 }
 
+@media (max-width: 900px) {
+  /* hide floating panel on tablet/mobile */
+  .story-floating-box {
+    display: none;
+  }
+
+  .story-chapters {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .story-carousel-container {
+    width: 100%;
+  }
+}
 
 @media (max-width: 768px) {
   .story-carousel-section {
-    padding: 0 20px;
+    padding: 0;
   }
-  
+
   .story-content {
     flex-direction: column;
     gap: 30px;
   }
-  
+
   .story-card {
     flex-direction: column;
     text-align: center;
     padding: 20px;
     width: 100%;
+    min-width: 0;
   }
-  
+
   .story-image-container {
     margin-right: 0;
     margin-bottom: 20px;
   }
-  
+
   .story-controls {
     flex-direction: row;
     gap: 20px;
     align-items: center;
     justify-content: center;
   }
-  
+
   .chapter-indicator.vertical {
     flex-direction: row;
     gap: 10px;
   }
-  
-  .nav-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
-  }
 
-  /* hide floating panel on small screens */
-  .story-floating-box {
-    display: none;
+  .nav-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
   }
 }

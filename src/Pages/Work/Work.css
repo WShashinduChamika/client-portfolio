@@ -112,7 +112,7 @@ input:checked + .slider {
   gap: 20px;
   width: 100%;
   justify-content: space-between;
-  justify-content: center;
+  align-items: center;;
 }
 .part_one {
   align-content: flex-start;
@@ -265,7 +265,9 @@ input:checked + .slider {
   font-size: 14px;
   align-items: center;
   display: flex;
-  padding: 10px;
+  padding: 0 12px;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .Touch:hover,
@@ -277,7 +279,18 @@ input:checked + .slider {
 .button_section {
   justify-content: space-between;
   display: flex;
-  gap: 15px;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.button_section > a.contactbtn {
+  flex: 0 1 auto;
+}
+
+.button_section > a.contactbtn .Touch {
+  padding: 0 clamp(10px, 1.5vw, 18px);
+  white-space: nowrap;
 }
 
 .description {
@@ -1081,6 +1094,7 @@ tbody td {
   }
 
   .part_one {
+    width: 100%;
     height: auto;
   }
 

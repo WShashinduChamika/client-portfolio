@@ -43,8 +43,10 @@ function Work() {
   return (
     <div>
       <Navbar />
+
       <div className="page-wrapper">
       <br />
+
       <motion.div
         className="pagecontent"
         initial={{ opacity: 0, y: 50 }} // start with 0 opacity and below the screen
@@ -75,6 +77,7 @@ function Work() {
           </div>
         </div>
       </motion.div>
+
       <motion.div
         className="main-content"
         initial={{ opacity: 0, y: 50 }} // start with 0 opacity and below the screen
@@ -144,6 +147,7 @@ function Work() {
           </div>
         </div>
       </motion.div>
+
       <motion.div
         initial={{ opacity: 0, y: 50 }} // start with 0 opacity and below the screen
         animate={{ opacity: 1, y: 0 }} // animate to full opacity and original position
@@ -155,6 +159,7 @@ function Work() {
         </div>{" "}
       </motion.div>
       <br /> <br />
+
       <motion.div
         className="part_one second"
         initial={{ opacity: 0, y: 50 }} // start with 0 opacity and below the screen
@@ -178,8 +183,10 @@ function Work() {
           </div>
         </div>
       </motion.div>
+
       <div className="Volhead">My Projects</div>
       <br />
+
       <div
         className="projectSection"
         initial={{ opacity: 0, y: 50 }} // start with 0 opacity and below the screen
@@ -232,6 +239,7 @@ function Work() {
           </Link>
         </div>
       </div>
+
       <div className="projectSection">
         <div className="card">
           <Link to="/Projects3" className="LinkTest">
@@ -278,11 +286,13 @@ function Work() {
           </Link>
         </div>
       </div>
+
       <div className="more-projects-button-container">
         <Link to="/more-projects" className="contactbtn">
           <div className="Touch" style={{color:"white", padding:"20px 50px"}}>More Projects</div>
         </Link>
       </div>
+
       {/* Services Section - added after projects */}
       <motion.div
         className="services-section"
@@ -343,6 +353,7 @@ function Work() {
       <br />
       <br />
       <br />
+
       <motion.div
         className="part_one second"
         initial={{ opacity: 0, y: 50 }} // start with 0 opacity and below the screen
@@ -403,6 +414,7 @@ function Work() {
       </motion.div>
       <br />
       <br />
+
       <div
         data-w-id="ee1e9c3e-a1c6-2190-15b3-1daea0409ed7"
         className="section-footer"
@@ -426,6 +438,7 @@ function Work() {
           </div>
         </div>
       </div>
+      
       </div>
     </div>
   );

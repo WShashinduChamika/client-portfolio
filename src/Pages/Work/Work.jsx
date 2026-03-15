@@ -287,9 +287,9 @@ function Work() {
         </div>
       </div>
 
-      <div className="more-projects-button-container">
-        <Link to="/more-projects" className="contactbtn">
-          <div className="Touch" style={{color:"white", padding:"20px 50px"}}>More Projects</div>
+      <div className="GrapicSection">
+        <Link to="/more-projects" className="Grapicscard more-projects-card">
+          <div className="headGrapic">More Projects</div>
         </Link>
       </div>
 
@@ -438,7 +438,7 @@ function Work() {
           </div>
         </div>
       </div>
-      
+
       </div>
     </div>
   );

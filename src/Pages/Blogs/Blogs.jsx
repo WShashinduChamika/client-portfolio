@@ -68,6 +68,15 @@ function Blogs() {
     return doc.body.textContent || '';
   };
 
+  const getShortPreview = (blog) => {
+    const sourceText = blog.excerpt ? blog.excerpt : blog.content ? getPlainText(blog.content) : '';
+    const trimmed = sourceText.trim();
+    const MAX_PREVIEW_LENGTH = 120;
+    return trimmed.length > MAX_PREVIEW_LENGTH
+      ? `${trimmed.slice(0, MAX_PREVIEW_LENGTH).trimEnd()}...`
+      : trimmed;
+  };
+
   const handleBlogClick = (blogId) => {
     navigate(`/blog/${blogId}`);
   };
@@ -111,11 +120,7 @@ function Blogs() {
                     <div className='blog-content'>
                       <h2 className='blog-title'>{blog.title}</h2>
                       <p className='blog-description'>
-                        {blog.excerpt
-                          ? blog.excerpt
-                          : blog.content
-                            ? getPlainText(blog.content).slice(0, 200) + '...'
-                            : ''}
+                        {getShortPreview(blog)}
                       </p>
                     </div>
                   </div>

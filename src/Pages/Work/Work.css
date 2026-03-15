@@ -496,8 +496,8 @@ input:checked + .slider {
 .help-card {
   background: linear-gradient(to bottom, #040404 60%, #080808 40%);
   border-radius: 24px;
-  border: 1px solid #FFFFFF14;
-  box-shadow: 3px 3px 5px 0px #0D0D0D44, inset 0 0 0 1px rgba(255,255,255,0.02);
+  border: none;
+  box-shadow: 3px 3px 5px 0px #0D0D0D44;
   padding: 28px;
 }
 
@@ -978,6 +978,14 @@ tbody td {
 .GrapicSection {
   display: flex;
   justify-content: center;
+}
+
+.more-projects-card {
+  width: auto;
+  max-width: 100%;
+  padding: 20px 50px;
+  margin-top: 40px;
+  margin-bottom: 0;
 }
 
 .LinkTest {

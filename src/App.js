@@ -11,6 +11,7 @@ import Blogs from "./Pages/Blogs/Blogs";
 import BlogDetail from "./Pages/Blogs/BlogDetail";
 import Scrolltotop from "./Components/Scrolltotop";
 import MoreProjects from "./Pages/MoreProjects/MoreProjects";
+import WhatsAppIcon from "./Assets/WhatsAppIcon.png";
 
 function App() {
   return (
@@ -29,6 +30,16 @@ function App() {
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/more-projects" element={<MoreProjects />} />
         </Routes>
+
+        <a
+          href="https://wa.me/94713775404?text=Hi%20Minuri%2C%20I%20would%20like%20to%20chat%20about%20your%20services."
+          target="_blank"
+          rel="noreferrer"
+          className="whatsapp-float"
+          aria-label="Open WhatsApp chat"
+        >
+          <img src={WhatsAppIcon} alt="WhatsApp" className="whatsapp-float-icon" />
+        </a>
       </div>
     </Router>
   );

@@ -109,15 +109,6 @@ function Work() {
                   <img src={instergram} className="logomark" alt="Logo" />{" "}
                 </a>
               </div>
-              <div className="Logo_Social2">
-                <a
-                  href="https://wa.me/+94713775404"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img src={instergram} className="logomark" alt="Logo" />{" "}
-                </a>
-              </div>
               <a href="mailto:minurisenara@gmail.com" className="contactbtn">
                 <div className="Touch">Get In Touch</div>
               </a>
@@ -384,18 +375,6 @@ function Work() {
               <div className="Logo_Social2">
                 <a
                   href="https://www.instagram.com/minuri_senara/?next=%2F"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="contactbtn"
-                >
-                  <div className="Touch">
-                    <img src={instergram} className="logomark" alt="Logo" />{" "}
-                  </div>
-                </a>
-              </div>
-              <div className="Logo_Social2">
-                <a
-                  href="https://wa.me/+94713775404"
                   target="_blank"
                   rel="noreferrer"
                   className="contactbtn"

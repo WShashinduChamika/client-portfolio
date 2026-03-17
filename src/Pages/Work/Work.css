@@ -145,6 +145,7 @@ input:checked + .slider {
     rgb(0, 0, 0) 0.0005%,
     rgb(255, 255, 255) 99.9995%
   );
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -864,7 +865,7 @@ tbody td {
 }
 
 .btn {
-  text-decoratio: none;
+  text-decoration: none;
   color: white;
 }
 
@@ -1008,6 +1009,78 @@ tbody td {
   background: radial-gradient(ellipse at center top, #0F9A9E99 0%, #00000000 100%);
 }
 
+.recent-blogs-section {
+  margin-top: 56px;
+}
+
+.recent-blogs-section .Volhead {
+  margin-top: 0;
+}
+
+.recent-blogs-grid {
+  margin-top: 44px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.recent-blog-card {
+  text-decoration: none;
+  color: #ffffff;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to bottom, #040404, #080808);
+  padding: 20px;
+  min-height: 320px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.recent-blog-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.recent-blog-image-wrap {
+  width: 100%;
+  aspect-ratio: 6 / 5;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #111;
+}
+
+.recent-blog-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.recent-blog-title {
+  margin: 20px 0px;
+  font-size: 22px;
+  line-height: 1.2;
+  color: #f2f2f2;
+}
+
+.recent-blogs-more-wrap {
+  margin-top: 56px;
+  display: flex;
+  justify-content: center;
+}
+
+.recent-blogs-more-btn {
+  width: auto;
+  max-width: 100%;
+  margin: 0;
+  padding: 16px 52px;
+}
+
+.recent-blogs-state {
+  color: #a8a8a8;
+  text-align: center;
+  margin-top: 20px;
+}
+
 /* Large tablet / small laptop */
 @media (max-width: 1200px) {
   .main-head {
@@ -1134,6 +1207,11 @@ tbody td {
 @media (max-width: 1024px) {
   .page-wrapper { padding: 0 24px; }
 
+  .recent-blogs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
   .services-section {
     padding: 40px 0px;
   }
@@ -1187,6 +1265,24 @@ tbody td {
 /* Tablet portrait / mobile landscape */
 @media (max-width: 768px) {
   .page-wrapper { padding: 0 16px; }
+
+  .recent-blogs-section {
+    margin-top: 42px;
+  }
+
+  .recent-blogs-grid {
+    margin-top: 28px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .recent-blogs-more-wrap {
+    margin-top: 36px;
+  }
+
+  .recent-blog-title {
+    font-size: 18px;
+  }
 
   .services-section {
     padding: 30px 0px;

@@ -19,6 +19,12 @@ import { motion } from "framer-motion";
 function Work() {
   const [time, setTime] = useState(new Date());
   const [scrollY, setScrollY] = useState(0);
+  const [recentBlogs, setRecentBlogs] = useState([]);
+  const [blogsLoading, setBlogsLoading] = useState(true);
+  const [blogsError, setBlogsError] = useState("");
+
+  const API_BASE_URL = "http://localhost:5001";
+
   useEffect(() => {
     setInterval(() => setTime(new Date()), 1000);
   }, []);
@@ -39,6 +45,36 @@ function Work() {
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to the top of the page when the component mounts
   }, []);
+
+  useEffect(() => {
+    const fetchRecentBlogs = async () => {
+      setBlogsLoading(true);
+      setBlogsError("");
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/blogs?published=true&limit=3&page=1`);
+        if (!response.ok) {
+          throw new Error("Failed to load recent blogs");
+        }
+
+        const payload = await response.json();
+        const blogs = payload?.data?.blogs || [];
+        setRecentBlogs(blogs);
+      } catch (error) {
+        setBlogsError("Unable to load recent blogs right now.");
+      } finally {
+        setBlogsLoading(false);
+      }
+    };
+
+    fetchRecentBlogs();
+  }, []);
+
+  const getCoverImage = (coverImage) => {
+    if (!coverImage) return Project1;
+    if (coverImage.startsWith("http")) return coverImage;
+    return `${API_BASE_URL}${coverImage}`;
+  };
 
   return (
     <div>
@@ -283,6 +319,43 @@ function Work() {
           <div className="headGrapic">More Projects</div>
         </Link>
       </div>
+
+      <motion.div
+        className="recent-blogs-section"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.1, ease: "easeOut" }}
+      >
+        <div className="Volhead">Let's Talk Everything</div>
+
+        {blogsLoading && <div className="recent-blogs-state">Loading recent blogs...</div>}
+        {!blogsLoading && blogsError && <div className="recent-blogs-state">{blogsError}</div>}
+
+        {!blogsLoading && !blogsError && (
+          <>
+            <div className="recent-blogs-grid">
+              {recentBlogs.map((blog) => (
+                <Link to={`/blog/${blog._id}`} className="recent-blog-card" key={blog._id}>
+                  <div className="recent-blog-image-wrap">
+                    <img
+                      src={getCoverImage(blog.coverImage)}
+                      alt={blog.title}
+                      className="recent-blog-image"
+                    />
+                  </div>
+                  <div className="recent-blog-title">{blog.title}</div>
+                </Link>
+              ))}
+            </div>
+
+            <div className="recent-blogs-more-wrap">
+              <Link to="/Blogs" className="Grapicscard more-projects-card recent-blogs-more-btn">
+                <div className="headGrapic">View More</div>
+              </Link>
+            </div>
+          </>
+        )}
+      </motion.div>
 
       {/* Services Section - added after projects */}
       <motion.div

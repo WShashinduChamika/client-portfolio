@@ -494,10 +494,10 @@ input:checked + .slider {
 
 /* Help card uses same visual style as service cards */
 .help-card {
-  background: linear-gradient(to bottom, #040404 60%, #080808 40%);
+  background: transparent;
   border-radius: 24px;
   border: none;
-  box-shadow: 3px 3px 5px 0px #0D0D0D44;
+  box-shadow: none;
   padding: 28px;
 }
 
@@ -514,6 +514,7 @@ input:checked + .slider {
   margin-bottom: 20px;
   font-size: 20px;
   line-height: 30px;
+  background-color: transparent;
 }
 
 .project-card-outline {

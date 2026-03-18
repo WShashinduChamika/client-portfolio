@@ -38,6 +38,7 @@ function Projects() {
 
   return (
     <div className="AboutSec1">
+      <div className="project-detail-container">
       <div className="button-project-back" onClick={handleBack}>
         {" "}
         <div>
@@ -250,7 +251,7 @@ function Projects() {
       <br />
       <br />
       <div className="card nextpro card2">
-        <Link to="/Projects2" className="LinkTest">
+        <Link to="/projects-2" className="LinkTest">
           <div className="project-card-outline">
             <div className="project-card-outline2">
               <div className="CardHead">
@@ -317,6 +318,7 @@ function Projects() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

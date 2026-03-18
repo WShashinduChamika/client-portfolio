@@ -16,7 +16,7 @@ import behance from "../../Assets/behance.png";
 import "./Work.css";
 import { motion } from "framer-motion";
 
-function Work() {
+function Home() {
   const [time, setTime] = useState(new Date());
   const [scrollY, setScrollY] = useState(0);
   const [recentBlogs, setRecentBlogs] = useState([]);
@@ -221,7 +221,7 @@ function Work() {
         transition={{ duration: 0.8, ease: "easeOut" }} // control speed and easing
       >
         <div className="card card1">
-          <Link to="/Projects" className="LinkTest">
+          <Link to="/projects" className="LinkTest">
             <div className="project-card-outline">
               <div className="project-card-outline2">
                 <div className="CardHead">
@@ -244,7 +244,7 @@ function Work() {
         </div>
 
         <div className="card card2">
-          <Link to="/Projects2" className="LinkTest">
+          <Link to="/projects-2" className="LinkTest">
             <div className="project-card-outline">
               <div className="project-card-outline2">
                 <div className="CardHead">
@@ -269,7 +269,7 @@ function Work() {
 
       <div className="projectSection">
         <div className="card">
-          <Link to="/Projects3" className="LinkTest">
+          <Link to="/projects-3" className="LinkTest">
             <div className="project-card-outline">
               <div className="project-card-outline2">
                 <div className="CardHead">
@@ -291,7 +291,7 @@ function Work() {
           </Link>
         </div>
         <div className="card card3">
-          <Link to="/Projects4" className="LinkTest">
+          <Link to="/projects-4" className="LinkTest">
             <div className="project-card-outline">
               <div className="project-card-outline2">
                 <div className="CardHead">
@@ -349,7 +349,7 @@ function Work() {
             </div>
 
             <div className="recent-blogs-more-wrap">
-              <Link to="/Blogs" className="Grapicscard more-projects-card recent-blogs-more-btn">
+              <Link to="/blogs" className="Grapicscard more-projects-card recent-blogs-more-btn">
                 <div className="headGrapic">View More</div>
               </Link>
             </div>
@@ -496,4 +496,4 @@ function Work() {
   );
 }
 
-export default Work;
+export default Home;

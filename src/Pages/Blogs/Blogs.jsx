@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Blogs.css';
 import Navbar from '../../Components/Navbar/Navbar';
+import { motion } from 'framer-motion';
 
 // Fallback thumbnail image
 import blogThumb from '../../Assets/Project1.png';
@@ -29,6 +30,11 @@ function Blogs() {
   const [totalPages, setTotalPages] = useState(1);
 
   const categories = ['All', 'Design', 'Our Mind', 'Others'];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.title = 'Blogs';
+  }, []);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -85,9 +91,21 @@ function Blogs() {
     <div className='blogs-page'>
       <Navbar />
       <div className='blogs-container'>
-        <h1 className='blogs-main-title'>Let's Talk Everything</h1>
+        <motion.h1
+          className='blogs-main-title'
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
+          Let's Talk Everything
+        </motion.h1>
         
-        <div className='blog-categories'>
+        <motion.div
+          className='blog-categories'
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.05 }}
+        >
           {categories.map((category) => (
             <button
               key={category}
@@ -97,7 +115,7 @@ function Blogs() {
               {category}
             </button>
           ))}
-        </div>
+        </motion.div>
 
         {loading && <div className='blogs-loading'>Loading blogs...</div>}
         {error && <div className='blogs-error'>{error}</div>}
@@ -109,10 +127,13 @@ function Blogs() {
                 <p className='blogs-empty'>No blogs found in this category.</p>
               ) : (
                 blogs.map((blog) => (
-                  <div
+                  <motion.div
                     key={blog._id}
                     className='blog-card'
                     onClick={() => handleBlogClick(blog._id)}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
                   >
                     <div className='blog-image-container'>
                       <img src={getCoverImage(blog.coverImage)} alt={blog.title} className='blog-image' />
@@ -123,13 +144,18 @@ function Blogs() {
                         {getShortPreview(blog)}
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))
               )}
             </div>
 
             {totalPages > 1 && (
-              <div className='blogs-pagination'>
+              <motion.div
+                className='blogs-pagination'
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+              >
                 <button
                   className='pagination-btn'
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
@@ -157,7 +183,7 @@ function Blogs() {
                 >
                   Next →
                 </button>
-              </div>
+              </motion.div>
             )}
           </>
         )}

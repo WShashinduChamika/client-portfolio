@@ -16,7 +16,7 @@ function Progressbar({ value = 0, onComplete, showButton }) {
   }, [present, onComplete]);
 
   const handlebuttonclick = () => {
-    navigate("/Work");
+    navigate("/home");
   };
 
   return (

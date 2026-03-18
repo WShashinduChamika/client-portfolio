@@ -155,13 +155,27 @@
   width: auto;
 }
 
+.atliasan {
+  height: 60px;
+  width: auto;
+}
+
 .TechStack {
   justify-content: center;
   align-items: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 20px;
   overflow: hidden;
+}
+
+.TechStack .Tech {
+  margin: 0;
+}
+
+.TechStack .last-tech {
+  margin-left: 12px;
 }
 
 .Meholder::after {

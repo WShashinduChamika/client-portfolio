@@ -8,6 +8,7 @@ import PS from "../../Assets/PS.png";
 import XD from "../../Assets/Xd.png";
 import figma from "../../Assets/figma.png";
 import webflow from "../../Assets/Webflow.png";
+import Atliasan from "../../Assets/Atliasan.png";
 import Me from "../../Assets/Me2.png";
 import Frame42 from "../../Assets/Me2.png";
 import { useEffect, useState } from "react";
@@ -144,7 +145,8 @@ function Info() {
             <img src={figma} className="Tech figma" alt="Logo" />
             <img src={PS} className="Tech" alt="Logo" />
             <img src={Ai} className="Tech" alt="Logo" />
-            <img src={webflow} className="Tech webflow" alt="Logo" />
+            <img src={Atliasan} className="Tech atliasan" alt="Logo" />
+            <img src={webflow} className="Tech webflow last-tech" alt="Logo" />
           </div>
         </a>
       </div>

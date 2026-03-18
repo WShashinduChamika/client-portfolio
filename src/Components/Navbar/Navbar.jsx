@@ -5,9 +5,9 @@ import { useState, useEffect } from "react";
 
 // Defined outside component so it's a stable reference (fixes exhaustive-deps)
 const navItems = [
-  { to: "/Work", label: "Work" },
-  { to: "/Info", label: "Info" },
-  { to: "/Blogs", label: "Blogs" },
+  { to: "/home", label: "Home" },
+  { to: "/info", label: "Info" },
+  { to: "/blogs", label: "Blogs" },
 ];
 
 function Navbar() {

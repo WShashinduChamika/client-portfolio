@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './BlogDetail.css';
+import { motion } from 'framer-motion';
 
 // Fallback image
 import blogThumb from '../../Assets/Project1.png';
@@ -15,6 +16,10 @@ function BlogDetail() {
   const [relatedBlogs, setRelatedBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   const getCoverImage = (coverImage) => {
     if (!coverImage) return blogThumb;
@@ -51,9 +56,15 @@ function BlogDetail() {
     return (
       <div className='blog-detail-page'>
         <div className='blog-detail-container'>
-          <button className='back-to-blog' onClick={() => navigate('/Blogs')}>
+          <motion.button
+            className='back-to-blog'
+            onClick={() => navigate('/blogs')}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
             <span>←</span> Back to Blog
-          </button>
+          </motion.button>
           <div className='blogs-loading'>Loading blog...</div>
         </div>
       </div>
@@ -64,9 +75,15 @@ function BlogDetail() {
     return (
       <div className='blog-detail-page'>
         <div className='blog-detail-container'>
-          <button className='back-to-blog' onClick={() => navigate('/Blogs')}>
+          <motion.button
+            className='back-to-blog'
+            onClick={() => navigate('/blogs')}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
             <span>←</span> Back to Blog
-          </button>
+          </motion.button>
           <div className='blogs-error'>{error || 'Blog not found.'}</div>
         </div>
       </div>
@@ -76,40 +93,71 @@ function BlogDetail() {
   return (
     <div className='blog-detail-page'>
       <div className='blog-detail-container'>
-        <button className='back-to-blog' onClick={() => navigate('/Blogs')}>
+        <motion.button
+          className='back-to-blog'
+          onClick={() => navigate('/blogs')}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+        >
           <span>←</span> Back to Blog
-        </button>
+        </motion.button>
 
-        <div className='blog-hero-image'>
+        <motion.div
+          className='blog-hero-image'
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.05 }}
+        >
           <img src={getCoverImage(blog.coverImage)} alt={blog.title} />
-        </div>
+        </motion.div>
 
-        <div className='blog-article'>
-          <h1 className='blog-article-title'>{blog.title}</h1>
+        <motion.div
+          className='blog-article'
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.1 }}
+        >
+          <motion.h1
+            className='blog-article-title'
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.15 }}
+          >
+            {blog.title}
+          </motion.h1>
 
           <div
             className='blog-article-content rich-content'
             dangerouslySetInnerHTML={{ __html: blog.content }}
           />
-        </div>
+        </motion.div>
 
         {relatedBlogs.length > 0 && (
-          <div className='related-blogs-section'>
+          <motion.div
+            className='related-blogs-section'
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+          >
             <div className='related-blogs-grid'>
-              {relatedBlogs.map((relatedBlog) => (
-                <div
+              {relatedBlogs.map((relatedBlog, index) => (
+                <motion.div
                   key={relatedBlog._id}
                   className='related-blog-card'
                   onClick={() => navigate(`/blog/${relatedBlog._id}`)}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, ease: 'easeOut', delay: 0.25 + index * 0.06 }}
                 >
                   <div className='related-blog-image'>
                     <img src={getCoverImage(relatedBlog.coverImage)} alt={relatedBlog.title} />
                   </div>
                   <h3 className='related-blog-title'>{relatedBlog.title}</h3>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </div>

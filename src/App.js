@@ -1,6 +1,6 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Work from "./Pages/Work/Work";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import Home from "./Pages/Work/Work";
 import Info from "./Pages/Info/Info";
 import Loading from "./Pages/Loading/Loading";
 import Projects from "./Pages/Projects/Projects";
@@ -13,24 +13,27 @@ import Scrolltotop from "./Components/Scrolltotop";
 import MoreProjects from "./Pages/MoreProjects/MoreProjects";
 import WhatsAppIcon from "./Assets/WhatsAppIcon.png";
 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Scrolltotop />
-        <Routes>
-          <Route path="/Work" element={<Work />} />
-          <Route path="/" element={<Loading />} />
-          <Route path="/Info" element={<Info />} />
-          <Route path="/Projects" element={<Projects />} />
-          <Route path="/Projects2" element={<Projects2 />} />
-          <Route path="/Projects3" element={<Projects3 />} />
-          <Route path="/Projects4" element={<Projects4 />} />
-          <Route path="/Blogs" element={<Blogs />} />
-          <Route path="/blog/:id" element={<BlogDetail />} />
-          <Route path="/more-projects" element={<MoreProjects />} />
-        </Routes>
+function AppContent() {
+  const location = useLocation();
+  const isLoadingPage = location.pathname === "/";
 
+  return (
+    <div className="App">
+      <Scrolltotop />
+      <Routes>
+        <Route path="/" element={<Loading />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/info" element={<Info />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects-2" element={<Projects2 />} />
+        <Route path="/projects-3" element={<Projects3 />} />
+        <Route path="/projects-4" element={<Projects4 />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/more-projects" element={<MoreProjects />} />
+      </Routes>
+
+      {!isLoadingPage && (
         <a
           href="https://wa.me/94713775404?text=Hi%20Minuri%2C%20I%20would%20like%20to%20chat%20about%20your%20services."
           target="_blank"
@@ -40,7 +43,15 @@ function App() {
         >
           <img src={WhatsAppIcon} alt="WhatsApp" className="whatsapp-float-icon" />
         </a>
-      </div>
+      )}
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

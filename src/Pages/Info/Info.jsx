@@ -9,7 +9,8 @@ import XD from "../../Assets/Xd.png";
 import figma from "../../Assets/figma.png";
 import webflow from "../../Assets/Webflow.png";
 import Atliasan from "../../Assets/Atliasan.png";
-import Me from "../../Assets/Me2.png";
+import Jira from "../../Assets/Jira.png";
+import MeVideo from "../../Assets/Info_Video/Me_Video.mp4";
 import Frame42 from "../../Assets/Me2.png";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -23,21 +24,39 @@ function Info() {
   const storyChapters = [
     {
       id: 1,
-      title: "Chapter 1: The Beginning",
+      title: "The Beginning",
       image: Frame42,
-      description: "In my childhood, I wasn’t good at studies from Grade 1 to 5. I always watched TV, played games, and my appearance even made people call me “Sanee par” even though I was a girl! ( Just a hindi Movie Character ) \n \nMy first big challenge was the Grade 5 exam. My parents worked so hard to support me, but eventually, I failed it. That failure became a real turning point in my life. \n \nAfter that, I decided to become the “study-focused” kid. In our team, I wanted to be the geek, just like Hermione from Harry Potter (the only movie I watched at that time)."
+      description:
+        "In my childhood, I wasn't good at studies from Grade 1 to 5. I always watched TV, played games, and my appearance even made people call me \"Sanee par\" even though I was a girl! ( Just a hindi Movie Character )\n\nMy first big challenge was the Grade 5 exam. My parents worked so hard to support me, but eventually, I failed it. That failure became a real turning point in my life.\n\nAfter that, I decided to become the \"study-focused\" kid. In our team, I wanted to be the geek, just like Hermione from Harry Potter (the only movie I watched at that time).",
+      summary:
+        "Oh, and by the way, I was always good at drawing since I was little."
     },
     {
       id: 2,
-      title: "Chapter 2: The Journey",
+      title: "The Journey",
       image: Frame42,
-      description: "Exploring new possibilities"
+      description:
+        "Here's the funny part: after my big decision, I gave up watching TV to study more. Sometimes I would glance at the TV and then quickly look away, as if I was \"respecting\" my own decision.\n\nThen I focused fully on my studies, determined to be first in my class. I'm happy and proud to say I did it-I achieved my goal and even won many awards!\n\nMy second big challenge was the O/L exam. I passed it with 8As and 1B, winning my second big exam.",
+      summary:
+        "After that, I started studying math seriously-and honestly, I'm actually pretty good at it!"
     },
     {
       id: 3,
-      title: "Chapter 3: The Future",
+      title: "The Future",
       image: Frame42,
-      description: "Building tomorrow today"
+      description:
+        "During this period, I had so many things to study, but I worked hard and passed my third big examination with \"A, B, C.\" Honestly, I think that's a pretty good result!\n\nAfter that, I applied to university and had to wait a long time for the selection. During this waiting period, I learned how to use tools like Photoshop and Illustrator, and actually started working as a graphic designer.",
+      summary:
+        "I think self-study really paid off for me!"
+    },
+    {
+      id: 4,
+      title: "University and Leadership",
+      image: Frame42,
+      description:
+        "I got selected into university and started learning Software Engineering. During this time, I also had the opportunity to volunteer as a graphic designer for several events, including IEEE and Young Professionals. I even worked as the Design Team Lead and Vice Chair of several organizations, which marked the beginning of my volunteer journey.\n\nWhile at university, I participated in more than 30 competitions as part of a team, winning several development awards. In 2024, our team also won the SLASSCOM Ingenuity Award, executing multiple projects successfully.",
+      summary:
+        "This time in my life was amazing. I went a long way, achieved a lot, and had experiences that really made me who I am today."
     }
   ];
 
@@ -114,7 +133,18 @@ function Info() {
 
         <div className="window-outline">
           <div className="Meholder">
-            <img src={Me} className="Me" alt="Portrait of Minuri" />
+            <video
+              className="MeVideo"
+              autoPlay
+              controls
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              aria-label="Video portrait of Minuri"
+            >
+              <source src={MeVideo} type="video/mp4" />
+            </video>
           </div>
         </div>
         {/* Decorative box removed from Aboutpart; moved to story section below */}
@@ -146,6 +176,7 @@ function Info() {
             <img src={PS} className="Tech" alt="Logo" />
             <img src={Ai} className="Tech" alt="Logo" />
             <img src={Atliasan} className="Tech atliasan" alt="Logo" />
+            <img src={Jira} className="Tech jira" alt="Logo" />
             <img src={webflow} className="Tech webflow last-tech" alt="Logo" />
           </div>
         </a>
@@ -169,10 +200,13 @@ function Info() {
               </div> */}
                 <div className="story-text">
                   <h3 className="chapter-title">
-                    {storyChapters[currentChapter].title}
+                    Chapter {String(storyChapters[currentChapter].id).padStart(2, "0")}
                   </h3>
                   <p className="chapter-description">
                     {storyChapters[currentChapter].description}
+                  </p>
+                  <p className="chapter-summary">
+                    {`"${storyChapters[currentChapter].summary}"`}
                   </p>
                 </div>
               </div>

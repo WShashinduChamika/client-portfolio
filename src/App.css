@@ -56,8 +56,8 @@ body {
   left: max(12px, env(safe-area-inset-left));
   bottom: max(12px, env(safe-area-inset-bottom));
   z-index: 1000;
-  width: clamp(100px, 12vw, 120px);
-  height: clamp(100px, 12vw, 120px);
+  width: clamp(72px, 9vw, 88px);
+  height: clamp(72px, 9vw, 88px);
   border-radius: 50%;
   overflow: hidden;
   display: flex;

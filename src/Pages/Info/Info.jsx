@@ -198,17 +198,26 @@ function Info() {
                   className="story-image"
                 />
               </div> */}
-                <div className="story-text">
-                  <h3 className="chapter-title">
-                    Chapter {String(storyChapters[currentChapter].id).padStart(2, "0")}
-                  </h3>
-                  <p className="chapter-description">
-                    {storyChapters[currentChapter].description}
-                  </p>
-                  <p className="chapter-summary">
-                    {`"${storyChapters[currentChapter].summary}"`}
-                  </p>
-                </div>
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={storyChapters[currentChapter].id}
+                    className="story-text"
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -14 }}
+                    transition={{ duration: 0.35, ease: "easeInOut" }}
+                  >
+                    <h3 className="chapter-title">
+                      Chapter {String(storyChapters[currentChapter].id).padStart(2, "0")}
+                    </h3>
+                    <p className="chapter-description">
+                      {storyChapters[currentChapter].description}
+                    </p>
+                    <p className="chapter-summary">
+                      {`"${storyChapters[currentChapter].summary}"`}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
               </div>
 
               <div className="story-controls">

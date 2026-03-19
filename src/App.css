@@ -18,6 +18,82 @@ body {
   cursor: url("../src/Assets/cursor.png"), auto;
 }
 
+/* Reference-style two-layer custom cursor */
+html.custom-cursor-active,
+html.custom-cursor-active * {
+  cursor: none !important;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  border-radius: 50%;
+  will-change: transform;
+  transition:
+    opacity 0.2s ease,
+    width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.cursor-dot {
+  width: clamp(12px, 1.1vw, 16px);
+  height: clamp(12px, 1.1vw, 16px);
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 1.5px;
+  background: rgba(29, 79, 188, 0.9);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18);
+}
+
+.cursor-dot.cursor-hover {
+  width: clamp(9px, 0.8vw, 12px);
+  height: clamp(9px, 0.8vw, 12px);
+}
+
+.cursor-ring {
+  width: clamp(34px, 2.8vw, 44px);
+  height: clamp(34px, 2.8vw, 44px);
+  background: transparent;
+  border: 1.5px solid rgba(29, 79, 188, 0.6);
+}
+
+.cursor-ring.cursor-hover {
+  width: clamp(52px, 4vw, 64px);
+  height: clamp(52px, 4vw, 64px);
+}
+
+.cursor-hidden {
+  opacity: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .cursor-dot {
+    background: rgba(255, 178, 0, 0.95);
+    outline-color: rgba(255, 178, 0, 0.8);
+  }
+
+  .cursor-ring {
+    border-color: rgba(255, 178, 0, 0.65);
+  }
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  html.custom-cursor-active,
+  html.custom-cursor-active * {
+    cursor: auto !important;
+  }
+
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}
+
 @media (max-width: 1536px) {
   body {
     padding: 100px;

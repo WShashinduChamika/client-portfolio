@@ -12,6 +12,7 @@ import BlogDetail from "./Pages/Blogs/BlogDetail";
 import Scrolltotop from "./Components/Scrolltotop";
 import MoreProjects from "./Pages/MoreProjects/MoreProjects";
 import WhatsAppIcon from "./Assets/WhatsAppIcon.png";
+import CustomCursor from "./Components/CustomCursor";
 
 function AppContent() {
   const location = useLocation();
@@ -19,6 +20,7 @@ function AppContent() {
 
   return (
     <div className="App">
+      <CustomCursor />
       <Scrolltotop />
       <Routes>
         <Route path="/" element={<Loading />} />

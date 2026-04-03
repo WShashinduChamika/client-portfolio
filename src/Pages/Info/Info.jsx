@@ -135,7 +135,6 @@ function Info() {
           <div className="Meholder">
             <video
               className="MeVideo"
-              autoPlay
               controls
               loop
               muted
